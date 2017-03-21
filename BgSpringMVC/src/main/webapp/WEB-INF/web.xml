@@ -54,7 +54,7 @@
 
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
-    <url-pattern>*.do</url-pattern>
+    <url-pattern>/</url-pattern>
   </servlet-mapping>
 
   <!-- 解决乱码的过滤器 -->
@@ -86,6 +86,5 @@
     - (like integration with proprietary webapps or servlets) you might have
     - to change this parameter.
     -->
-
 </web-app>
         
