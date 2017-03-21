@@ -20,7 +20,7 @@
 </head>
 
 <body>
-<h1>SSM整合</h1>
+<h1>SSM整合~</h1>
 <form action="${pageContext.request.contextPath }/userAction/toWelcome" method="post">
     用户名：<input name="name"/> <br/>
     用户年龄<input name="age"/><br/>
