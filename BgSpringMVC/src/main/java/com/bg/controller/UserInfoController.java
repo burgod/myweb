@@ -20,13 +20,13 @@ public class UserInfoController{
     private IUserInfoService iUserInfoService;
 
     @RequestMapping(value="toWelcome")
-    public String handleRequest(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws Exception {
-        String name = httpServletRequest.getParameter("name");
+    public String handleRequest(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,UserInfo userInfo) throws Exception {
+        /*String name = httpServletRequest.getParameter("name");
         Integer age = Integer.valueOf(httpServletRequest.getParameter("age"));
 
         UserInfo userInfo = new UserInfo();
         userInfo.setName(name);
-        userInfo.setAge(age);
+        userInfo.setAge(age);*/
         iUserInfoService.add(userInfo);
         return "/welcome/welcome";
     }
@@ -38,4 +38,5 @@ public class UserInfoController{
     public void setiUserInfoService(IUserInfoService iUserInfoService) {
         this.iUserInfoService = iUserInfoService;
     }
+
 }
