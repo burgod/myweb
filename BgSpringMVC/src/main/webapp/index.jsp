@@ -11,7 +11,6 @@
     <style type="text/css">
         form{
             margin:0px auto;
-
             width:500px;
             padding:20px;
         }
