@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by yitop on 2017/3/16.
@@ -22,6 +23,10 @@ public class UserInfoServiceImpl implements IUserInfoService{
         userInfoDao.add(info);
     }
 
+    public List<UserInfo> findList() {
+        return userInfoDao.findList();
+    }
+
     public UserInfoDao getUserInfoDao() {
         return userInfoDao;
     }
@@ -29,4 +34,5 @@ public class UserInfoServiceImpl implements IUserInfoService{
     public void setUserInfoDao(UserInfoDao userInfoDao) {
         this.userInfoDao = userInfoDao;
     }
+
 }

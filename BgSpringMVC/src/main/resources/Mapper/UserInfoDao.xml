@@ -6,4 +6,7 @@
     <select id="add" parameterType="UserInfo">
         insert into userinfo (name,age) values(#{name},#{age})
     </select>
+    <select id="findList" resultType="com.bg.model.UserInfo">
+        select * from userinfo
+    </select>
 </mapper>
