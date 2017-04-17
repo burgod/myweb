@@ -20,9 +20,9 @@
         a {color:#00007F;text-decoration:none;}
         a:hover {color:#bd0a01;text-decoration:underline;}
         .treebox{ width: 200px; margin-left: 0px; background-color:#1a6cb9; height: 100%;float: left}
-        .menu{ overflow: hidden; border-color: #ddd; border-style: solid ; border-width: 0 1px 1px ; }
+        .mymenu{ overflow: hidden; border-color: #ddd; border-style: solid ; border-width: 0 1px 1px ; }
         /*第一层*/
-        .menu li.level1>a{
+        .mymenu li.level1>a{
             display:block;
             height: 45px;
             line-height: 45px;
@@ -33,14 +33,14 @@
             position: relative;
             transition:all .5s ease 0s;
         }
-        .menu li.level1 a:hover{ text-decoration: none;background-color:#326ea5;   }
-        .menu li.level1 a.current{ background: #0f4679; }
+        .mymenu li.level1 a:hover{ text-decoration: none;background-color:#326ea5;   }
+        .mymenu li.level1 a.current{ background: #0f4679; }
 
         /*============修饰图标*/
-        .ico{ width: 20px; height: 20px; display:block;   position: absolute; left: 20px; top: 10px; background-repeat: no-repeat; background-image: url(/images/ico1.png); }
+        .ico{ width: 20px; height: 20px; display:block;   position: absolute; left: 20px; top: 10px; background-repeat: no-repeat; background-image: url(${pageContext.request.contextPath }/images/ico1.png); }
 
         /*============小箭头*/
-        .level1 i{ width: 20px; height: 10px; background-image:url(/images/arrow.png); background-repeat: no-repeat; display: block; position: absolute; right: 20px; top: 20px; }
+        .level1 i{ width: 20px; height: 10px; background-image:url(${pageContext.request.contextPath }/images/arrow.png); background-repeat: no-repeat; display: block; position: absolute; right: 20px; top: 20px; }
         .level1 i.down{ background-position: 0 -10px; }
 
         .ico1{ background-position: 0 0; }
@@ -50,9 +50,9 @@
         .ico5{ background-position: 0 -80px; }
 
         /*第二层*/
-        .menu li ul{ overflow: hidden; }
-        .menu li ul.level2{ display: none;background: #0f4679;  }
-        .menu li ul.level2 li a{
+        .mymenu li ul{ overflow: hidden; }
+        .mymenu li ul.level2{ display: none;background: #0f4679;  }
+        .mymenu li ul.level2 li a{
             display: block;
             height: 45px;
             line-height: 45px;
@@ -71,7 +71,7 @@
 --%>
 
 <div class="treebox">
-    <ul class="menu">
+    <ul class="mymenu">
         <li class="level1">
             <a href="#none"><em class="ico ico1"></em>导航一<i class="down"></i></a>
             <ul class="level2">
@@ -123,9 +123,11 @@
     <div class="content"></div>
 </div>
 <!-- 引入 jQuery -->
-<script src="/js/jquery-1.8.0.min.js"></script>
-<script src="/js/easing.js"></script>
-<script src="/js/jquery.easyui.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery-1.8.0.min.js"></script>
+<script src="${pageContext.request.contextPath }/js/easing.js"></script>
+<script src="${pageContext.request.contextPath }/js/jquery.easyui.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/icon.css">
 <script>
     //等待dom元素加载完毕.
     $(function(){
@@ -139,7 +141,7 @@
         });
     })
     function TO_METCH(){
-        $(".content").load("/userAction/myWelcome.do");
+        $(".content").load("${pageContext.request.contextPath }/userAction/myWelcome.do");
     }
 </script>
 <%--

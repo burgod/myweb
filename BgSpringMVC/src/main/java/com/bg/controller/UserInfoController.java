@@ -3,8 +3,12 @@ package com.bg.controller;
 import com.bg.model.UserInfo;
 import com.bg.service.IUserInfoService;
 import com.bg.utils.GsonUtils;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,10 +43,12 @@ public class UserInfoController{
         return "/welcome/welcome";
     }
 
-    @RequestMapping(value="userList")
+    @RequestMapping(value="userList",produces="text/html;charset=UTF-8")
     @ResponseBody
-    public String getUserList(){
+    public String getUserList() throws Exception{
+
         List<UserInfo> results = iUserInfoService.findList();
+        System.out.print("测试>>>>"+GsonUtils.bean2json(results));
         return GsonUtils.bean2json(results);
     }
 

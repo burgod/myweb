@@ -15,7 +15,7 @@
 
 <body>
 <h1>噢，在呢！eeee</h1>
-<table id="mytable">
+<table id="mytable" class="easyui-datagrid" style="width:400px;height:250px" data-options="fitColumns:true,singleSelect:true">
 
 </table>
 </body>
@@ -23,7 +23,7 @@
 <script type="text/javascript">
     $(function() {
         $('#mytable').datagrid({
-            url: '/userAction/userList.do',
+            url: '${pageContext.request.contextPath }/userAction/userList.do',
             columns: [[
                 {field: 'id', title: 'Code', width: 100},
                 {field: 'name', title: '名字', width: 100},
