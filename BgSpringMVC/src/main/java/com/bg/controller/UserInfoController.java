@@ -36,7 +36,7 @@ public class UserInfoController{
         userInfo.setAge(age);*/
         //iUserInfoService.add(userInfo);
         //return "/welcome/welcome";
-        return "/view/Test";
+        return "view/main";
     }
 
     @RequestMapping(value="addUser")
