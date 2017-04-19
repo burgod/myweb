@@ -7,7 +7,15 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <!-- 引入 jQuery -->
+    <script src="${pageContext.request.contextPath }/js/jquery-1.8.0.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/easing.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.easyui.min.js"></script>
+    <script src="${pageContext.request.contextPath }/js/datagrid-detailview.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.panel.js"></script>
+    <script src="${pageContext.request.contextPath }/js/jquery.parser.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/icon.css">
     <style>
         /*
                 author :前端一枚  努力学习中 qq：815183231;
@@ -69,7 +77,7 @@
 <%--
 <script src="/demos/googlegg.js"></script>
 --%>
-
+<div>
 <div class="treebox">
     <ul class="mymenu">
         <li class="level1">
@@ -119,15 +127,10 @@
         </li>
     </ul>
 </div>
-<div style="float:left">
-    <div class="content"></div>
+<div style="float:left;width:80%">
+    <div class="content" style="width:100%"></div>
 </div>
-<!-- 引入 jQuery -->
-<script src="${pageContext.request.contextPath }/js/jquery-1.8.0.min.js"></script>
-<script src="${pageContext.request.contextPath }/js/easing.js"></script>
-<script src="${pageContext.request.contextPath }/js/jquery.easyui.min.js"></script>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/default/easyui.css">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/icon.css">
+</div>
 <script>
     //等待dom元素加载完毕.
     $(function(){

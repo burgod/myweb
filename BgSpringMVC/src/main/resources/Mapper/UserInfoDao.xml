@@ -4,9 +4,48 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bg.dao.UserInfoDao">
     <select id="add" parameterType="UserInfo">
-        insert into userinfo (name,age) values(#{name},#{age})
+        insert into userinfo (name,age,phone,email) values(#{name},#{age},#{phone},#{email})
     </select>
-    <select id="findList" resultType="com.bg.model.UserInfo">
+    <select id="findList" resultType="com.bg.model.UserInfo" parameterType="map">
         select * from userinfo
+        <where>
+            <if test="name!=null and name!=''">
+                NAME =#{name}
+            </if>
+            <if test="phone!=null and phone!=''">
+                and phone=#{phone}
+            </if>
+        </where>
+        limit
+                     #{firstPage},
+                     #{rows}
+
     </select>
+    <select id="findtotal" resultType="java.lang.Long" parameterType="map">
+        select count(*) from userinfo
+        <where>
+        <if test="name!=null">
+            NAME =#{name}
+        </if>
+        <if test="phone!=null">
+            and phone=#{phone}
+        </if>
+    </where>
+    </select>
+    <delete id="deleteUser" parameterType="java.lang.String">
+        DELETE from userinfo where id=#{id}
+    </delete>
+    <select id="findByid" parameterType="java.lang.String" resultType="com.bg.model.UserInfo">
+        select * from userinfo where id=#{id}
+    </select>
+    <update id="updateUser" parameterType="UserInfo">
+        UPDATE userinfo
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name!=null and name!=''">name=#{name},</if>
+            <if test="age!=null and age!=''">age=#{age},</if>
+            <if test="phone!=null and phone!=''">phone=#{phone},</if>
+            <if test="email!=null and email!=''">email=#{email},</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
 </mapper>

@@ -71,11 +71,14 @@
         <aop:advisor advice-ref="txAdvice" pointcut-ref="stockPointcut"/>
     </aop:config>
 
+    <!-- 用于使用@ResponseBody后返回中文避免乱码 -->
     <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" >
         <property name="messageConverters">
             <list>
-                <bean class = "org.springframework.http.converter.StringHttpMessageConverter">
-                    <property name = "supportedMediaTypes">
+                <bean id="stringHttpMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+                    <property name="writeAcceptCharset" value="false" />
+                    <!-- 用于避免响应头过大 -->
+                    <property name="supportedMediaTypes">
                         <list>
                             <value>text/html;charset=UTF-8</value>
                         </list>

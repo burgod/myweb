@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yitop on 2017/3/16.
@@ -23,8 +24,24 @@ public class UserInfoServiceImpl implements IUserInfoService{
         userInfoDao.add(info);
     }
 
-    public List<UserInfo> findList() {
-        return userInfoDao.findList();
+    public List<UserInfo> findList(Map<String,String> map) {
+        return userInfoDao.findList(map);
+    }
+
+    public long findtotal() {
+        return userInfoDao.findtotal();
+    }
+
+    public void deleteUser(String id) {
+        userInfoDao.deleteUser(id);
+    }
+
+    public UserInfo findByid(String id) {
+        return userInfoDao.findByid(id);
+    }
+
+    public void updateUser(UserInfo userInfo) {
+        userInfoDao.updateUser(userInfo);
     }
 
     public UserInfoDao getUserInfoDao() {

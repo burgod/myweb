@@ -1,19 +1,20 @@
 package com.bg.controller;
 
+import com.bg.common.Page;
 import com.bg.model.UserInfo;
 import com.bg.service.IUserInfoService;
 import com.bg.utils.GsonUtils;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by yitop on 2017/3/16.
@@ -38,6 +39,13 @@ public class UserInfoController{
         return "/view/Test";
     }
 
+    @RequestMapping(value="addUser")
+    @ResponseBody
+    public String saveUser(UserInfo userInfo){
+        iUserInfoService.add(userInfo);
+        return "success";
+    }
+
     @RequestMapping(value="myWelcome")
     public String toContent(){
         return "/welcome/welcome";
@@ -45,11 +53,50 @@ public class UserInfoController{
 
     @RequestMapping(value="userList",produces="text/html;charset=UTF-8")
     @ResponseBody
-    public String getUserList() throws Exception{
+    public String getUserList(@RequestParam(value="page", required=false) String page,@RequestParam(value="rows", required=false) String rows,@RequestParam(value="name", required=false) String name,@RequestParam(value="phone", required=false) String phone) throws Exception{
 
-        List<UserInfo> results = iUserInfoService.findList();
-        System.out.print("测试>>>>"+GsonUtils.bean2json(results));
-        return GsonUtils.bean2json(results);
+        Page pageBean = new Page(Integer.parseInt(page), Integer.parseInt(rows));
+        Map reMap = new HashMap();
+        Map paraMap = new HashMap();
+
+        //paraMap.put("title", title);
+        paraMap.put("firstPage", pageBean.getFirstPage());
+        paraMap.put("rows", pageBean.getRows());
+        paraMap.put("name",name);
+        paraMap.put("phone",phone);
+
+        List<UserInfo> results = iUserInfoService.findList(paraMap);
+        long total = iUserInfoService.findtotal();
+        //System.out.print("测试>>>>"+GsonUtils.bean2json(results));
+        reMap.put("rows", results);     //存放每页记录数
+        reMap.put("total", total);   //存放总记录数 ，必须的
+        return GsonUtils.bean2json(reMap);
+    }
+
+    @RequestMapping(value="deleteUser",method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteUser(@RequestParam String id){
+        iUserInfoService.deleteUser(id);
+        return "success";
+    }
+
+    @RequestMapping(value="toAdd")
+    public String toAdd(){
+        return "/welcome/addOrEdit";
+    }
+
+    @RequestMapping(value="findByid")
+    @ResponseBody
+    public String findById(@RequestParam String id){
+        UserInfo userInfo = iUserInfoService.findByid(id);
+        return GsonUtils.bean2json(userInfo);
+    }
+
+    @RequestMapping(value="updateUser")
+    @ResponseBody
+    public String updateUser(UserInfo userInfo){
+        iUserInfoService.updateUser(userInfo);
+        return "success";
     }
 
     public IUserInfoService getiUserInfoService() {
