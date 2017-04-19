@@ -24,9 +24,6 @@
 
 </table>
 
-<div id="dlg">
-
-</div>
 <%--
 <%@ include file="addOrEdit.jsp"%>
 --%>
@@ -77,14 +74,15 @@
         //$('#fm').form('clear');
         //url='userSave.do';
         //$("#addOr").css('display','block');
-        $("#dlg").dialog({
+        $("<div></div>").dialog({
+            id:'dlg',
             title: '添加',
             width : 400,
             height : 300,
             modal: true,
             href:'${pageContext.request.contextPath }/userAction/toAdd.do',
             onClose:function(){
-                $("#dlg").dialog('destroy');
+                $('#dlg').dialog('destroy');
             },
             buttons : [ {
                 text : 'OK',
@@ -104,7 +102,6 @@
                             alert("添加成功");
                             $('#mytable').datagrid("reload");
                             $("#dlg").dialog('destroy');
-                            $("#dlg").dialog("close");
                         }
 
                     });
@@ -115,7 +112,6 @@
                 iconCls : 'icon-cancel',
                 handler : function() {
                     $("#dlg").dialog('destroy');
-                    $("#dlg").dialog("close");
                 }
             } ],
             onLoad : function() {
@@ -124,7 +120,8 @@
         });
     }
     function toShow(id){
-        $("#dlg").dialog({
+        $("<div></div>").dialog({
+            id:'dlg',
             title: '查看',
             width : 400,
             height : 300,
@@ -138,7 +135,6 @@
                 iconCls : 'icon-ok',
                 handler : function() {
                     $("#dlg").dialog('destroy');
-                    $("#dlg").dialog("close");
                 }
             } ],
             onLoad : function() {
@@ -184,7 +180,8 @@
         });
     }
     function edit(id){
-        $("#dlg").dialog({
+        $('<div></div>').dialog({
+            id:'dlg',
             title: '添加',
             width : 400,
             height : 300,
@@ -211,7 +208,6 @@
                             alert("修改成功");
                             $('#mytable').datagrid("reload");
                             $("#dlg").dialog('destroy');
-                            $("#dlg").dialog("close");
                         }
 
                     });
@@ -222,7 +218,6 @@
                 iconCls : 'icon-cancel',
                 handler : function() {
                     $("#dlg").dialog('destroy');
-                    $("#dlg").dialog("close");
                 }
             } ],
             onLoad : function() {
