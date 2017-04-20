@@ -182,7 +182,7 @@
     function edit(id){
         $('<div></div>').dialog({
             id:'dlg',
-            title: '添加',
+            title: '编辑',
             width : 400,
             height : 300,
             modal: true,
