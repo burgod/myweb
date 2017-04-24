@@ -30,6 +30,11 @@ public class RoleContronller {
         return "/role/role";
     }
 
+    @RequestMapping(value="toAdd")
+    public String toAdd(){
+        return "role/addOrEdit";
+    }
+
     @RequestMapping(value="addRole")
     @ResponseBody
     public String addRole(Role role){
@@ -58,4 +63,28 @@ public class RoleContronller {
         reMap.put("total",total);
         return GsonUtils.bean2json(reMap);
     }
+
+    @RequestMapping(value="findById")
+    @ResponseBody
+    public String findById(@RequestParam String id){
+        Role role = iRoleService.findById(id);
+        return GsonUtils.bean2json(role);
+    }
+
+    @RequestMapping(value="deleteRole")
+    @ResponseBody
+    public String delete(@RequestParam String id){
+        iRoleService.deleteRole(id);
+        return "success";
+    }
+
+    @RequestMapping(value="updateRole")
+    @ResponseBody
+    public String updateRole(Role role){
+        role.setUpdatetime(new Date());
+        iRoleService.updateRole(role);
+        return "success";
+    }
+
+
 }

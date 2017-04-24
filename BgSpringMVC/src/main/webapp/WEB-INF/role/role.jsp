@@ -79,7 +79,7 @@
             width : 400,
             height : 300,
             modal: true,
-            href:'${pageContext.request.contextPath }/userAction/toAdd.do',
+            href:'${pageContext.request.contextPath }/role/toAdd.do',
             onClose:function(){
                 $('#dlg').dialog('destroy');
             },
@@ -91,7 +91,7 @@
                     $.ajax({
                         cache: false,
                         type: "POST",
-                        url:"${pageContext.request.contextPath }/userAction/addUser.do", //把表单数据发送到ajax.jsp
+                        url:"${pageContext.request.contextPath }/role/addRole.do", //把表单数据发送到ajax.jsp
                         data:$('#fm').serialize(), //要发送的是ajaxFrm表单中的数据
                         async: false,
                         error: function(request) {
@@ -125,7 +125,7 @@
             width : 400,
             height : 300,
             modal: true,
-            href:'${pageContext.request.contextPath }/userAction/toAdd.do',
+            href:'${pageContext.request.contextPath }/role/toAdd.do',
             onClose:function(){
                 $("#dlg").dialog('destroy');
             },
@@ -139,15 +139,12 @@
             onLoad : function() {
                 //初始化表单数据
                 $.ajax({
-                    url: '${pageContext.request.contextPath }/userAction/findByid.do',
+                    url: '${pageContext.request.contextPath }/role/findById.do',
                     type:'POST',
                     data:{id:id},
                     success:function(data){
                         var sin = $.parseJSON(data);
-                        $("input[name='name']").val(sin.name);
-                        $("input[name='age']").val(sin.age);
-                        $("input[name='phone']").val(sin.phone);
-                        $("input[name='email']").val(sin.email);
+                        $("input[name='rolename']").val(sin.rolename);
                     }
                 });
             }
@@ -156,7 +153,7 @@
     function del(id){
         if(window.confirm("确定要删除该项吗")){
             $.ajax({
-                url: '${pageContext.request.contextPath }/userAction/deleteUser.do',
+                url: '${pageContext.request.contextPath }/role/deleteRole.do',
                 type: 'POST',
                 data:{id:id},
                 success:function (data) {
@@ -173,8 +170,7 @@
     function tableFresh(){
         $('#roletable').datagrid({
             queryParams: {
-                'name':$('#name').val(),
-                'phone':$('#phone').val(),
+                'rolename':$('#rolename').val(),
             }
         });
     }
@@ -185,7 +181,7 @@
             width : 400,
             height : 300,
             modal: true,
-            href:'${pageContext.request.contextPath }/userAction/toAdd.do',
+            href:'${pageContext.request.contextPath }/role/toAdd.do',
             onClose:function(){
                 $("#dlg").dialog('destroy');
             },
@@ -197,7 +193,7 @@
                     $.ajax({
                         cache: false,
                         type: "POST",
-                        url:"${pageContext.request.contextPath }/userAction/updateUser.do", //把表单数据发送到ajax.jsp
+                        url:"${pageContext.request.contextPath }/role/updateRole.do", //把表单数据发送到ajax.jsp
                         data:$('#fm').serialize(), //要发送的是ajaxFrm表单中的数据
                         async: false,
                         error: function(request) {
@@ -223,15 +219,12 @@
                 //初始化表单数据
                 //初始化表单数据
                 $.ajax({
-                    url: '${pageContext.request.contextPath }/userAction/findByid.do',
+                    url: '${pageContext.request.contextPath }/role/findById.do',
                     type:'POST',
                     data:{id:id},
                     success:function(data){
                         var sin = $.parseJSON(data);
-                        $("input[name='name']").val(sin.name);
-                        $("input[name='age']").val(sin.age);
-                        $("input[name='phone']").val(sin.phone);
-                        $("input[name='email']").val(sin.email);
+                        $("input[name='rolename']").val(sin.rolename);
                         $("input[name='id']").val(sin.id);
                     }
                 });

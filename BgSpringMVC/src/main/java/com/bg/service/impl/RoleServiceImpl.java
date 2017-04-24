@@ -30,11 +30,15 @@ public class RoleServiceImpl implements IRoleService{
         return roleDao.findtotal();
     }
 
-    public RoleDao getRoleDao() {
-        return roleDao;
+    public Role findById(String id) {
+        return roleDao.findById(id);
     }
 
-    public void setRoleDao(RoleDao roleDao) {
-        this.roleDao = roleDao;
+    public void deleteRole(String id) {
+        roleDao.deleteRole(id);
+    }
+
+    public void updateRole(Role role) {
+        roleDao.updateRole(role);
     }
 }

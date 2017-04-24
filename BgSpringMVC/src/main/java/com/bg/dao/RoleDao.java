@@ -14,4 +14,7 @@ public interface RoleDao {
     public void addRole(Role role);
     public List<Role> findList(Map<String,String> map);
     public long findtotal();
+    Role findById(String id);
+    void deleteRole(String id);
+    void updateRole(Role role);
 }

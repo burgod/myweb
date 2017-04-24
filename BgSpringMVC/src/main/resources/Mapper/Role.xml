@@ -26,19 +26,17 @@
             </if>
         </where>
     </select>
-    <delete id="deleteUser" parameterType="java.lang.String">
+    <delete id="deleteRole" parameterType="java.lang.String">
         DELETE from role where id=#{id}
     </delete>
-    <select id="findByid" parameterType="java.lang.String" resultType="com.bg.model.Role">
+    <select id="findById" parameterType="java.lang.String" resultType="com.bg.model.Role">
         select * from role where id=#{id}
     </select>
-    <update id="updateUser" parameterType="Role">
+    <update id="updateRole" parameterType="Role">
         UPDATE role
         <trim prefix="set" suffixOverrides=",">
-            <if test="name!=null and name!=''">name=#{name},</if>
-            <if test="age!=null and age!=''">age=#{age},</if>
-            <if test="phone!=null and phone!=''">phone=#{phone},</if>
-            <if test="email!=null and email!=''">email=#{email},</if>
+            <if test="rolename!=null and rolename!=''">rolename=#{rolename},</if>
+            <if test="updatetime!=null and updatetime!=''">updatetime=#{updatetime},</if>
         </trim>
         WHERE id=#{id}
     </update>
