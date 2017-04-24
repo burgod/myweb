@@ -3,6 +3,8 @@ package com.bg.model;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
+
 /**
  * Created by yitop on 2017/3/16.
  */
@@ -13,6 +15,8 @@ public class UserInfo {
     private String passwd;
     private String phone;
     private String email;
+    private Date createtime;
+
 
     public Integer getId() {
         return id;
@@ -60,5 +64,13 @@ public class UserInfo {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 }

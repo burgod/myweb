@@ -8,6 +8,7 @@
     </typeAliases>
     <mappers>
         <mapper resource="Mapper/UserInfoDao.xml" />
+        <mapper resource="Mapper/Role.xml"/>
         <!--<package name="com.bg.dao"/>-->
     </mappers>
 </configuration>

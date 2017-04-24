@@ -84,7 +84,7 @@
             <a href="#none"><em class="ico ico1"></em>导航一<i class="down"></i></a>
             <ul class="level2">
                 <li><a href="javascript:TO_METCH();">用户管理</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
+                <li><a href="javascript:to_role();">角色管理</a></li>
                 <li><a href="javascript:;">导航选项</a></li>
                 <li><a href="javascript:;">导航选项</a></li>
             </ul>
@@ -145,6 +145,9 @@
     })
     function TO_METCH(){
         $(".content").load("${pageContext.request.contextPath }/userAction/myWelcome.do");
+    }
+    function to_role(){
+        $(".content").load("${pageContext.request.contextPath }/role/toView.do");
     }
 </script>
 </body>

@@ -44,12 +44,4 @@ public class UserInfoServiceImpl implements IUserInfoService{
         userInfoDao.updateUser(userInfo);
     }
 
-    public UserInfoDao getUserInfoDao() {
-        return userInfoDao;
-    }
-
-    public void setUserInfoDao(UserInfoDao userInfoDao) {
-        this.userInfoDao = userInfoDao;
-    }
-
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,7 @@ public class UserInfoController{
     @RequestMapping(value="addUser")
     @ResponseBody
     public String saveUser(UserInfo userInfo){
+        userInfo.setCreatetime(new Date());
         iUserInfoService.add(userInfo);
         return "success";
     }
@@ -97,14 +99,6 @@ public class UserInfoController{
     public String updateUser(UserInfo userInfo){
         iUserInfoService.updateUser(userInfo);
         return "success";
-    }
-
-    public IUserInfoService getiUserInfoService() {
-        return iUserInfoService;
-    }
-
-    public void setiUserInfoService(IUserInfoService iUserInfoService) {
-        this.iUserInfoService = iUserInfoService;
     }
 
 }
