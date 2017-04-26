@@ -18,4 +18,5 @@ public interface IRoleService {
     void updateRole(Role role);
     List<Role> getAllRole();
     void addUserRole(UserRole userRole);
+    List<UserRole> findByUserId(String id);
 }

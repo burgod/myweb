@@ -116,7 +116,7 @@
             } ],
             onLoad : function() {
                 //初始化表单数据
-                initCombobox('roleSelect', 'XSRY_CD');//学术荣誉的字典编码是XSRY_CD
+                initCombobox('roleSelect', '');//学术荣誉的字典编码是XSRY_CD
             }
         });
     }
@@ -152,7 +152,7 @@
                         $("input[name='email']").val(sin.email);
                     }
                 });
-                initCombobox('roleSelect', 'XSRY_CD');
+                initCombobox('roleSelect', id);
             }
         });
     }
@@ -245,11 +245,11 @@
         var value = "";
         //加载下拉框复选框
         $('#'+id).combobox({
-            url:'${pageContext.request.contextPath }/role/getAllRole.do', //后台获取下拉框数据的url
+            url:'${pageContext.request.contextPath }/role/getAllRole.do?userId='+code, //后台获取下拉框数据的url
             method:'post',
             panelHeight:200,//设置为固定高度，combobox出现竖直滚动条
-            valueField:'roleid',
-            textField:'rolename',
+            valueField:'id',
+            textField:'text',
             multiple:true,
             formatter: function (row) { //formatter方法就是实现了在每个下拉选项前面增加checkbox框的方法
                var opts = $(this).combobox('options');

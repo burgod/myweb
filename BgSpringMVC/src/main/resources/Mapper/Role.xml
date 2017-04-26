@@ -46,4 +46,10 @@
     <select id="addUserRole" parameterType="UserRole">
           insert into userrole(roleid,username) values(#{roleid},#{username})
     </select>
+    <select id="findByUserId"  resultType="UserRole" parameterType="java.lang.String">
+        select roleid,username from userrole a,userinfo b where a.username = b.name
+        <if test="_parameter != null and _parameter!=''">
+            and b.id =#{id}
+        </if>
+    </select>
 </mapper>

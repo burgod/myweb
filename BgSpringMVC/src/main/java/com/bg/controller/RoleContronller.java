@@ -1,7 +1,9 @@
 package com.bg.controller;
 
+import com.bg.common.ComboBox;
 import com.bg.common.Page;
 import com.bg.model.Role;
+import com.bg.model.UserRole;
 import com.bg.service.IRoleService;
 import com.bg.utils.GsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by yitop on 2017/4/24.
@@ -88,9 +87,27 @@ public class RoleContronller {
 
     @RequestMapping(value="getAllRole")
     @ResponseBody
-    public String getAllRole(){
+    public String getAllRole(@RequestParam (value="userId") String id){
         List<Role> roles = iRoleService.getAllRole();
-        return GsonUtils.bean2json(roles);
+        List<UserRole> userRoles = null;
+        if(!"".equals(id)&&id!=null){
+            userRoles = iRoleService.findByUserId(id);
+        }
+        List<ComboBox> ur = new ArrayList<ComboBox>();
+        for(Role r:roles){
+            ComboBox c = new ComboBox();
+            c.setId(r.getRoleid());
+            c.setText(r.getRolename());
+            if(userRoles!=null){
+                for(UserRole u:userRoles){
+                    if(r.getRoleid() == u.getRoleid()){
+                        c.setSelected(true);
+                    }
+                }
+            }
+            ur.add(c);
+        }
+        return GsonUtils.bean2json(ur);
     }
 
 

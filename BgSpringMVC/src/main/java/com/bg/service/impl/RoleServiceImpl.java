@@ -50,4 +50,8 @@ public class RoleServiceImpl implements IRoleService{
     public void addUserRole(UserRole userRole) {
         roleDao.addUserRole(userRole);
     }
+
+    public List<UserRole> findByUserId(String id) {
+        return roleDao.findByUserId(id);
+    }
 }
