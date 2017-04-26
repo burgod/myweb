@@ -21,4 +21,5 @@ public interface RoleDao {
     List<Role> getAllRole();
     void addUserRole(UserRole userRole);
     List<UserRole> findByUserId(String id);
+    void deleteByUserName(String username);
 }

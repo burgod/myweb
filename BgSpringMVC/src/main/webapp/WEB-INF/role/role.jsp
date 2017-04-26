@@ -41,7 +41,7 @@
         $('#roletable').datagrid({
             url: '${pageContext.request.contextPath }/role/findList.do',
             columns: [[
-                {field: 'id', title: 'code', width: 100},
+                {field: 'roleid', title: 'code', width: 100},
                 {field: 'rolename', title: '角色名称', width: 100},
                 {field: 'createtime', title: '创建时间', width: 100},
                 {field: 'updatetime', title: '更新时间', width: 100},

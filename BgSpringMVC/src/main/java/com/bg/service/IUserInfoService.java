@@ -14,5 +14,5 @@ public interface IUserInfoService {
     public long findtotal();
     public void deleteUser(String id);
     public UserInfo findByid(String id);
-    public void updateUser(UserInfo userInfo);
+    public void updateUser(UserInfo userInfo,String [] rolesId);
 }

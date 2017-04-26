@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -54,7 +55,16 @@ public class UserInfoServiceImpl implements IUserInfoService{
         return userInfoDao.findByid(id);
     }
 
-    public void updateUser(UserInfo userInfo) {
+    @Transactional
+    public void updateUser(UserInfo userInfo,String [] rolesId) {
+        List<UserRole> ur = roleDao.findByUserId(userInfo.getId().toString());
+        roleDao.deleteByUserName(userInfo.getName());
+        for(int i=0;i<rolesId.length;i++){
+            UserRole userRole = new UserRole();
+            userRole.setRoleid(Integer.valueOf(rolesId[i]));
+            userRole.setUsername(userInfo.getName());
+            roleDao.addUserRole(userRole);
+        }
         userInfoDao.updateUser(userInfo);
     }
 

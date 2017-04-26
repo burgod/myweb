@@ -52,4 +52,7 @@
             and b.id =#{id}
         </if>
     </select>
+    <delete id="deleteByUserName" parameterType="java.lang.String">
+        DELETE from userrole where username=#{username}
+    </delete>
 </mapper>

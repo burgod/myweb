@@ -238,6 +238,7 @@
                         $("input[name='id']").val(sin.id);
                     }
                 });
+                initCombobox('roleSelect', id);
             }
         });
     }

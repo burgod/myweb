@@ -98,8 +98,8 @@ public class UserInfoController{
 
     @RequestMapping(value="updateUser")
     @ResponseBody
-    public String updateUser(UserInfo userInfo){
-        iUserInfoService.updateUser(userInfo);
+    public String updateUser(UserInfo userInfo,@RequestParam(value="roleSelect")String [] roleids){
+        iUserInfoService.updateUser(userInfo,roleids);
         return "success";
     }
 
