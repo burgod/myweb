@@ -86,5 +86,12 @@ public class RoleContronller {
         return "success";
     }
 
+    @RequestMapping(value="getAllRole")
+    @ResponseBody
+    public String getAllRole(){
+        List<Role> roles = iRoleService.getAllRole();
+        return GsonUtils.bean2json(roles);
+    }
+
 
 }

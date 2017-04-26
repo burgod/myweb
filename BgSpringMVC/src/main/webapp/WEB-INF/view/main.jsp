@@ -13,7 +13,6 @@
     <script src="${pageContext.request.contextPath }/js/jquery.easyui.min.js"></script>
     <script src="${pageContext.request.contextPath }/js/datagrid-detailview.js"></script>
     <script src="${pageContext.request.contextPath }/js/jquery.panel.js"></script>
-    <script src="${pageContext.request.contextPath }/js/jquery.parser.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/icon.css">
     <style>

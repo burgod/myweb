@@ -6,18 +6,18 @@ import java.util.Date;
  * Created by luyb on 2017/4/24.
  */
 public class Role {
-    private Integer id;
+    private Integer roleid;
     private String rolename;
     private Date createtime;
     private Date updatetime;
     private String createuser;
 
-    public Integer getId() {
-        return id;
+    public Integer getRoleid() {
+        return roleid;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setRoleid(Integer roleid) {
+        this.roleid = roleid;
     }
 
     public String getRolename() {

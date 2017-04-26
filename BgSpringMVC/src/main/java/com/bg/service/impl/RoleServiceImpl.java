@@ -2,6 +2,7 @@ package com.bg.service.impl;
 
 import com.bg.dao.RoleDao;
 import com.bg.model.Role;
+import com.bg.model.UserRole;
 import com.bg.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,5 +41,13 @@ public class RoleServiceImpl implements IRoleService{
 
     public void updateRole(Role role) {
         roleDao.updateRole(role);
+    }
+
+    public List<Role> getAllRole() {
+        return roleDao.getAllRole();
+    }
+
+    public void addUserRole(UserRole userRole) {
+        roleDao.addUserRole(userRole);
     }
 }

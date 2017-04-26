@@ -22,6 +22,12 @@
                     <td>Email：</td>
                     <td><input name="email" class="easyui-validatebox" validType="email" required="true" style="width: 200px;"></td>
                 </tr>
+                <tr>
+                    <td>角色：</td>
+                    <td>
+                        <input id="roleSelect" name="roleSelect" class="easyui-combobox"/>
+                    </td>
+                </tr>
             </table>
         </form>
     </div>

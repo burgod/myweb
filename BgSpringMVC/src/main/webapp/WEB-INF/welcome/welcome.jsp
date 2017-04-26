@@ -116,6 +116,7 @@
             } ],
             onLoad : function() {
                 //初始化表单数据
+                initCombobox('roleSelect', 'XSRY_CD');//学术荣誉的字典编码是XSRY_CD
             }
         });
     }
@@ -151,6 +152,7 @@
                         $("input[name='email']").val(sin.email);
                     }
                 });
+                initCombobox('roleSelect', 'XSRY_CD');
             }
         });
     }
@@ -236,6 +238,48 @@
                         $("input[name='id']").val(sin.id);
                     }
                 });
+            }
+        });
+    }
+    function initCombobox(id,code){
+        var value = "";
+        //加载下拉框复选框
+        $('#'+id).combobox({
+            url:'${pageContext.request.contextPath }/role/getAllRole.do', //后台获取下拉框数据的url
+            method:'post',
+            panelHeight:200,//设置为固定高度，combobox出现竖直滚动条
+            valueField:'roleid',
+            textField:'rolename',
+            multiple:true,
+            formatter: function (row) { //formatter方法就是实现了在每个下拉选项前面增加checkbox框的方法
+               var opts = $(this).combobox('options');
+                return '<input type="checkbox" class="combobox-checkbox">' + row[opts.textField];
+            },
+            onLoadSuccess: function () {  //下拉框数据加载成功调用
+                var opts = $(this).combobox('options');
+                var target = this;
+                var values = $(target).combobox('getValues');//获取选中的值的values
+                $.map(values, function (value) {
+                    var el = opts.finder.getEl(target, value);
+                    el.find('input.combobox-checkbox')._propAttr('checked', true);
+                })
+            },
+            onSelect: function (row) { //选中一个选项时调用
+                var opts = $(this).combobox('options');
+                //设置选中值所对应的复选框为选中状态
+                var el = opts.finder.getEl(this, row[opts.valueField]);
+                el.find('input.combobox-checkbox')._propAttr('checked', true);
+
+                //获取选中的值的values
+                $("#"+id).val($(this).combobox('getValues'));
+            },
+            onUnselect: function (row) {//不选中一个选项时调用
+                var opts = $(this).combobox('options');
+                var el = opts.finder.getEl(this, row[opts.valueField]);
+                el.find('input.combobox-checkbox')._propAttr('checked', false);
+
+                //获取选中的值的values
+                $("#"+id).val($(this).combobox('getValues'));
             }
         });
     }

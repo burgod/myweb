@@ -2,6 +2,8 @@ package com.bg.controller;
 
 import com.bg.common.Page;
 import com.bg.model.UserInfo;
+import com.bg.model.UserRole;
+import com.bg.service.IRoleService;
 import com.bg.service.IUserInfoService;
 import com.bg.utils.GsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,9 +44,9 @@ public class UserInfoController{
 
     @RequestMapping(value="addUser")
     @ResponseBody
-    public String saveUser(UserInfo userInfo){
+    public String saveUser(UserInfo userInfo,@RequestParam(value="roleSelect")String [] roleids){
         userInfo.setCreatetime(new Date());
-        iUserInfoService.add(userInfo);
+        iUserInfoService.add(userInfo,roleids);
         return "success";
     }
 

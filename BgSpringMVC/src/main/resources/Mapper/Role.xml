@@ -40,4 +40,10 @@
         </trim>
         WHERE id=#{id}
     </update>
+    <select id="getAllRole" resultType="com.bg.model.Role">
+        select * from role
+    </select>
+    <select id="addUserRole" parameterType="UserRole">
+          insert into userrole(roleid,username) values(#{roleid},#{username})
+    </select>
 </mapper>

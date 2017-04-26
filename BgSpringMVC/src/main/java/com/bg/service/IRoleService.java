@@ -1,6 +1,7 @@
 package com.bg.service;
 
 import com.bg.model.Role;
+import com.bg.model.UserRole;
 
 import java.util.List;
 import java.util.Map;
@@ -15,4 +16,6 @@ public interface IRoleService {
     Role findById(String id);
     void deleteRole(String id);
     void updateRole(Role role);
+    List<Role> getAllRole();
+    void addUserRole(UserRole userRole);
 }
