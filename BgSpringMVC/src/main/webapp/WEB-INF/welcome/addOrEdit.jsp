@@ -25,7 +25,7 @@
                 <tr>
                     <td>角色：</td>
                     <td>
-                        <input id="roleSelect" name="roleSelect" class="easyui-combobox"/>
+                        <input id="roleSelect" name="roleSelect" class="easyui-combobox" style="width: 200px;"/>
                     </td>
                 </tr>
             </table>

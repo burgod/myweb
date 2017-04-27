@@ -84,7 +84,7 @@
             <ul class="level2">
                 <li><a href="javascript:TO_METCH();">用户管理</a></li>
                 <li><a href="javascript:to_role();">角色管理</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
+                <li><a href="javascript:to_resource();">资源权限</a></li>
                 <li><a href="javascript:;">导航选项</a></li>
             </ul>
         </li>
@@ -147,6 +147,9 @@
     }
     function to_role(){
         $(".content").load("${pageContext.request.contextPath }/role/toView.do");
+    }
+    function to_resource(){
+        $(".content").load("${pageContext.request.contextPath }/resource/toView.do");
     }
 </script>
 </body>

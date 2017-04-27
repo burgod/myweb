@@ -9,6 +9,7 @@
     <mappers>
         <mapper resource="Mapper/UserInfoDao.xml" />
         <mapper resource="Mapper/Role.xml"/>
+        <mapper resource="Mapper/Resource.xml"/>
         <!--<package name="com.bg.dao"/>-->
     </mappers>
 </configuration>
