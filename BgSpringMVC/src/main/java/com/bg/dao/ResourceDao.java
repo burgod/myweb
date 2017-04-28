@@ -17,4 +17,7 @@ public interface ResourceDao {
     List<Resource> getAllResource();
     Resource findPreById(String id);
     void addResource(Resource resource);
+    void deleteResource(String id);
+    Resource findById(String id);
+    void updateResource(Resource resource);
 }

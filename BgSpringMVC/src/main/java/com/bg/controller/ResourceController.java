@@ -69,7 +69,7 @@ public class ResourceController {
             ComboBox cb = new ComboBox();
             cb.setId(c.getResourceid());
             cb.setText(c.getResourcename());
-            if(choose.getResourceid().equals(c.getResourceid())){
+            if(choose!=null&&choose.getResourceid().equals(c.getResourceid())){
                 cb.setSelected(true);
             }
             ur.add(cb);
@@ -81,6 +81,27 @@ public class ResourceController {
     @ResponseBody
     public String addResource(Resource resource){
         iResourceService.addResource(resource);
+        return "success";
+    }
+
+    @RequestMapping(value="deleteResource")
+    @ResponseBody
+    public String deleteResource(@RequestParam(value="id")String id){
+        iResourceService.deleteResource(id);
+        return "success";
+    }
+
+    @RequestMapping(value="findById")
+    @ResponseBody
+    public String findById(@RequestParam(value="id")String id){
+        Resource c = iResourceService.findById(id);
+        return GsonUtils.bean2json(c);
+    }
+
+    @RequestMapping(value="updateResource")
+    @ResponseBody
+    public String updateResource(Resource resource){
+        iResourceService.updateResource(resource);
         return "success";
     }
 }

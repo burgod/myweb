@@ -16,8 +16,8 @@
 <body>
 <span> >>权限信息 </span>
 <div id="tb" class="datagrid-toolbar" style="padding:2px 5px;">
-    父资源: <input class="easyui-text" id="pre" style="width:110px">
-    子资源: <input class="easyui-text" id="re" style="width:110px">
+    父资源: <input class="easyui-combobox" id="pre" style="width:110px">
+    子资源: <input class="easyui-combobox" id="re" style="width:110px">
     <a href="javascript:tableFresh()" class="easyui-linkbutton" iconCls="icon-search">Search</a>
 </div>
 <table id="resourcetable" class="easyui-datagrid" style="width:100%;height:300px"  data-options="fitColumns:true,singleSelect:true,pagination:true,toolbar:'#tb'">
@@ -49,9 +49,9 @@
                 {field: 'resourcetype', title: '资源类型', width: 100},
                 {field:'opt',title:'操作',width:100,align:'center',
                     formatter:function(value,rec,index){
-                        var s = '<a href="#" mce_href="#" onclick="toShow(\''+ rec.id + '\')">查看</a> ';
-                        var e = '<a href="#" mce_href="#" onclick="edit(\''+ rec.id + '\')">编辑</a> ';
-                        var d = '<a href="#" mce_href="#" onclick="del(\''+ rec.id +'\')">删除</a> ';
+                        var s = '<a href="#" mce_href="#" onclick="toShow(\''+ rec.resourceid + '\')">查看</a> ';
+                        var e = '<a href="#" mce_href="#" onclick="edit(\''+ rec.resourceid + '\')">编辑</a> ';
+                        var d = '<a href="#" mce_href="#" onclick="del(\''+ rec.resourceid +'\')">删除</a> ';
                         return s+e+d;
                     }
                 }
@@ -67,6 +67,9 @@
              },
              {text:'查找',iconCls:'icon-search'}*/
             ],
+            onLoadSuccess:function () {
+
+            }
         });
     });
     function open_add(){
@@ -127,7 +130,7 @@
             width : 400,
             height : 300,
             modal: true,
-            href:'${pageContext.request.contextPath }/role/toAdd.do',
+            href:'${pageContext.request.contextPath }/resource/toAdd.do',
             onClose:function(){
                 $("#dlg").dialog('destroy');
             },
@@ -141,21 +144,24 @@
             onLoad : function() {
                 //初始化表单数据
                 $.ajax({
-                    url: '${pageContext.request.contextPath }/role/findById.do',
+                    url: '${pageContext.request.contextPath }/resource/findById.do',
                     type:'POST',
                     data:{id:id},
                     success:function(data){
                         var sin = $.parseJSON(data);
-                        $("input[name='rolename']").val(sin.rolename);
+                        $("input[name='resourcename']").val(sin.resourcename);
+                        $("input[name='resourceurl']").val(sin.resourceurl);
+                        $("#resourcetype").val(sin.resourcetype);
                     }
                 });
+                initCombobox("presourceid",id);
             }
         });
     }
     function del(id){
         if(window.confirm("确定要删除该项吗")){
             $.ajax({
-                url: '${pageContext.request.contextPath }/role/deleteRole.do',
+                url: '${pageContext.request.contextPath }/resource/deleteResource.do',
                 type: 'POST',
                 data:{id:id},
                 success:function (data) {
@@ -183,7 +189,7 @@
             width : 400,
             height : 300,
             modal: true,
-            href:'${pageContext.request.contextPath }/role/toAdd.do',
+            href:'${pageContext.request.contextPath }/resource/toAdd.do',
             onClose:function(){
                 $("#dlg").dialog('destroy');
             },
@@ -195,7 +201,7 @@
                     $.ajax({
                         cache: false,
                         type: "POST",
-                        url:"${pageContext.request.contextPath }/role/updateRole.do", //把表单数据发送到ajax.jsp
+                        url:"${pageContext.request.contextPath }/resource/updateResource.do", //把表单数据发送到ajax.jsp
                         data:$('#fm').serialize(), //要发送的是ajaxFrm表单中的数据
                         async: false,
                         error: function(request) {
@@ -208,7 +214,6 @@
                         }
 
                     });
-
                 }
             }, {
                 text : 'CANCEL',
@@ -221,15 +226,18 @@
                 //初始化表单数据
                 //初始化表单数据
                 $.ajax({
-                    url: '${pageContext.request.contextPath }/role/findById.do',
+                    url: '${pageContext.request.contextPath }/resource/findById.do',
                     type:'POST',
                     data:{id:id},
                     success:function(data){
                         var sin = $.parseJSON(data);
-                        $("input[name='rolename']").val(sin.rolename);
-                        $("input[name='id']").val(sin.id);
+                        $("input[name='resourceid']").val(sin.resourceid);
+                        $("input[name='resourcename']").val(sin.resourcename);
+                        $("input[name='resourceurl']").val(sin.resourceurl);
+                        $("#resourcetype").val(sin.resourcetype);
                     }
                 });
+                initCombobox("presourceid",id);
             }
         });
     }

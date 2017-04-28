@@ -38,4 +38,16 @@ public class ResourceServiceImpl implements IResourceService{
     public void addResource(Resource resource) {
         resourceDao.addResource(resource);
     }
+
+    public void deleteResource(String id) {
+        resourceDao.deleteResource(id);
+    }
+
+    public Resource findById(String id) {
+        return resourceDao.findById(id);
+    }
+
+    public void updateResource(Resource resource) {
+        resourceDao.updateResource(resource);
+    }
 }

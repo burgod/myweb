@@ -6,7 +6,7 @@
         <form id="fm">
             <table cellspacing="10px;">
                 <tr>
-                    <input name="id" class="easyui-validatebox" required="true" style="width: 200px;display: none">
+                    <input name="resourceid" class="easyui-validatebox" required="true" style="width: 200px;display: none">
                     <td>资源权限名称：</td>
                     <td><input name="resourcename" class="easyui-validatebox" required="true" style="width: 200px;"></td>
                 </tr>
@@ -20,7 +20,7 @@
                 </tr>
                 <tr>
                     <td>权限类型：</td>
-                    <td><select name="resourcetype" class="easyui-validatebox" required="true" style="width: 200px;">
+                    <td><select name="resourcetype" id="resourcetype" class="easyui-validatebox" required="true" style="width: 200px;">
                             <option value="0">菜单资源</option>
                             <option value="1">功能资源</option>
                         </select>

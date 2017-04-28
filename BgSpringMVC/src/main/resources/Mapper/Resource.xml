@@ -7,7 +7,7 @@
         insert into resource (resourcename,resourceurl,presourceid,resourcetype) values(#{resourcename},#{resourceurl},#{presourceid},#{resourcetype})
     </select>
     <select id="findList" resultType="com.bg.model.ResourceTable" parameterType="map">
-        select c.* from (select a.resourceid,a.resourceurl,a.resourcename,b.resourcename presourceid,
+        select c.* from (select a.resourceid,a.resourceurl,a.resourcename,b.resourcename presourcename,
         case when a.resourcetype=0 then '菜单资源' else '功能资源' end resourcetype
         from resource a
         left join resource b
@@ -31,23 +31,25 @@
         </where>
     </select>
     <delete id="deleteResource" parameterType="java.lang.String">
-        DELETE from role where id=#{id}
+        DELETE from resource where resourceid=#{id}
     </delete>
-    <select id="findById" parameterType="java.lang.String" resultType="com.bg.model.Role">
-        select * from role where id=#{id}
+    <select id="findById" parameterType="java.lang.String" resultType="com.bg.model.Resource">
+        select * from resource where resourceid=#{id}
     </select>
-    <update id="updateResource" parameterType="Role">
-        UPDATE role
+    <update id="updateResource" parameterType="Resource">
+        UPDATE resource
         <trim prefix="set" suffixOverrides=",">
-            <if test="rolename!=null and rolename!=''">rolename=#{rolename},</if>
-            <if test="updatetime!=null and updatetime!=''">updatetime=#{updatetime},</if>
+            <if test="resourcename!=null and resourcename!=''">resourcename=#{resourcename},</if>
+            <if test="resourceurl!=null and resourceurl!=''">resourceurl=#{resourceurl},</if>
+            <if test="presourceid!=null and presourceid!=''">presourceid=#{presourceid},</if>
+            <if test="resourcetype!=null and resourcetype!=''">resourcetype=#{resourcetype},</if>
         </trim>
-        WHERE id=#{id}
+        WHERE resourceid=#{resourceid}
     </update>
     <select id="getAllResource" resultType="com.bg.model.Resource">
         select resourceid,RESOURCENAME from resource where RESOURCETYPE=0
     </select>
     <select id="findPreById"  resultType="com.bg.model.Resource" parameterType="java.lang.String">
-        select RESOURCEID,resourename where RESOURCEID=(select PRESOURCEID where RESOURCEID=#{id})
+        select RESOURCEID,resourcename from resource where RESOURCEID=(select PRESOURCEID from resource  where RESOURCEID=#{id})
     </select>
 </mapper>

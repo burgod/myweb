@@ -24,10 +24,10 @@
     <select id="findtotal" resultType="java.lang.Long" parameterType="map">
         select count(*) from userinfo
         <where>
-        <if test="name!=null">
+        <if test="name!=null and name!=''">
             NAME =#{name}
         </if>
-        <if test="phone!=null">
+        <if test="phone!=null and phone!=''">
             and phone=#{phone}
         </if>
     </where>
