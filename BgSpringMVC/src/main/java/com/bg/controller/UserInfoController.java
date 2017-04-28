@@ -70,7 +70,7 @@ public class UserInfoController{
         paraMap.put("phone",phone);
 
         List<UserInfo> results = iUserInfoService.findList(paraMap);
-        long total = iUserInfoService.findtotal();
+        long total = iUserInfoService.findtotal(paraMap);
         //System.out.print("测试>>>>"+GsonUtils.bean2json(results));
         reMap.put("rows", results);     //存放每页记录数
         reMap.put("total", total);   //存放总记录数 ，必须的

@@ -43,8 +43,8 @@ public class UserInfoServiceImpl implements IUserInfoService{
         return userInfoDao.findList(map);
     }
 
-    public long findtotal() {
-        return userInfoDao.findtotal();
+    public long findtotal(Map<String,String> map) {
+        return userInfoDao.findtotal(map);
     }
 
     public void deleteUser(String id) {

@@ -1,6 +1,7 @@
 package com.bg.dao;
 
 import com.bg.model.Resource;
+import com.bg.model.ResourceTable;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,8 +12,9 @@ import java.util.Map;
  */
 @Repository
 public interface ResourceDao {
-    List<Resource> findList(Map<String,String> map);
+    List<ResourceTable> findList(Map<String,String> map);
     Long findtotal(Map<String,String> map);
     List<Resource> getAllResource();
     Resource findPreById(String id);
+    void addResource(Resource resource);
 }

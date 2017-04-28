@@ -16,7 +16,7 @@
                 </tr>
                 <tr>
                     <td>父资源权限：</td>
-                    <td><input id="preresource" name="preresource" class="easyui-combobox" style="width: 200px;"/></td>
+                    <td><input id="presourceid" name="presourceid" class="easyui-combobox" style="width: 200px;"/></td>
                 </tr>
                 <tr>
                     <td>权限类型：</td>

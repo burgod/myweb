@@ -45,7 +45,7 @@
                 {field: 'resourceid', title: 'code', width: 100},
                 {field: 'resourcename', title: '资源权限名称', width: 100},
                 {field: 'resourceurl', title: '资源路径', width: 100},
-                {field: 'presourceid', title: '父资源权限', width: 100},
+                {field: 'presourcename', title: '父资源权限', width: 100},
                 {field: 'resourcetype', title: '资源类型', width: 100},
                 {field:'opt',title:'操作',width:100,align:'center',
                     formatter:function(value,rec,index){
@@ -116,7 +116,7 @@
             } ],
             onLoad : function() {
                 //初始化表单数据
-                initCombobox("preresource",'');
+                initCombobox("presourceid",'');
             }
         });
     }

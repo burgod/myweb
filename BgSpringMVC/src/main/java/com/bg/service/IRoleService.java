@@ -12,7 +12,7 @@ import java.util.Map;
 public interface IRoleService {
     public void addRole(Role role);
     public List<Role> findList(Map<String,String> map);
-    public long findtotal();
+    public long findtotal(Map<String,String> map);
     Role findById(String id);
     void deleteRole(String id);
     void updateRole(Role role);

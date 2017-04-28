@@ -4,6 +4,8 @@ import com.bg.common.ComboBox;
 import com.bg.common.Page;
 import com.bg.dao.ResourceDao;
 import com.bg.model.Resource;
+import com.bg.model.ResourceTable;
+import com.bg.service.IResourceService;
 import com.bg.utils.GsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,7 +26,7 @@ import java.util.Map;
 public class ResourceController {
 
     @Autowired
-    private ResourceDao resourceDao;
+    private IResourceService iResourceService;
 
     @RequestMapping(value="toView")
     public String toView(){
@@ -42,8 +44,8 @@ public class ResourceController {
         paraMap.put("firstPage", pageBean.getFirstPage());
         paraMap.put("rows", pageBean.getRows());
 
-        List<Resource> results = resourceDao.findList(paraMap);
-        long total = resourceDao.findtotal(paraMap);
+        List<ResourceTable> results = iResourceService.findList(paraMap);
+        long total = iResourceService.findtotal(paraMap);
         reMap.put("rows",results);
         reMap.put("total",total);
         return GsonUtils.bean2json(reMap);
@@ -57,10 +59,10 @@ public class ResourceController {
     @RequestMapping(value="getAllResource")
     @ResponseBody
     public String getAllResource(@RequestParam(value="resourceId")String id){
-        List<Resource> allResource = resourceDao.getAllResource();
+        List<Resource> allResource = iResourceService.getAllResource();
         Resource choose = null;
         if(!"".equals(id)&&id!=null){
-            choose = resourceDao.findPreById(id);
+            choose = iResourceService.findPreById(id);
         }
         List<ComboBox> ur = new ArrayList<ComboBox>();
         for(Resource c:allResource){
@@ -73,5 +75,12 @@ public class ResourceController {
             ur.add(cb);
         }
         return GsonUtils.bean2json(ur);
+    }
+
+    @RequestMapping(value="addResource")
+    @ResponseBody
+    public String addResource(Resource resource){
+        iResourceService.addResource(resource);
+        return "success";
     }
 }

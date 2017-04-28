@@ -27,8 +27,8 @@ public class RoleServiceImpl implements IRoleService{
         return roleDao.findList(map);
     }
 
-    public long findtotal() {
-        return roleDao.findtotal();
+    public long findtotal(Map<String,String> map) {
+        return roleDao.findtotal(map);
     }
 
     public Role findById(String id) {

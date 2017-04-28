@@ -56,7 +56,7 @@ public class RoleContronller {
         paraMap.put("rows", pageBean.getRows());
         paraMap.put("rolename",rolename);
 
-        long total = iRoleService.findtotal();
+        long total = iRoleService.findtotal(paraMap);
         List<Role> results = iRoleService.findList(paraMap);
         reMap.put("rows",results);
         reMap.put("total",total);

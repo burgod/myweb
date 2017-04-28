@@ -13,7 +13,7 @@ import java.util.Map;
 public interface UserInfoDao {
     public void add(UserInfo info);
     public List<UserInfo> findList(Map<String,String> map);
-    public long findtotal();
+    public long findtotal(Map<String,String> map);
     public void deleteUser(String id);
     public UserInfo findByid(String id);
     public void updateUser(UserInfo info);
