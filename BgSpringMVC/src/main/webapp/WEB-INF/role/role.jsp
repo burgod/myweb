@@ -34,9 +34,70 @@
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">保存</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">关闭</a>
 </div>--%>
+<%--<div class="content_wrap">
+    <div class="zTreeDemoBackground left">
+        <ul class="list">
+            <li class="title">&nbsp;&nbsp;<span class="highlight_red">Check the checkbox to select or click the node</span></li>
+            <li class="title">&nbsp;&nbsp;Test: <input id="citySel" type="text" readonly value="" style="width:120px;" onclick="showMenu();" />
+                </li>
+        </ul>
+    </div>
+</div>
+<div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+    <ul id="treeDemo" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
+</div>--%>
 </body>
 </html>
 <script type="text/javascript">
+    var setting = {
+        check: {
+            enable: true,
+            chkboxType: {"Y":"s", "N":"ps"}
+        },
+        view: {
+            dblClickExpand: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            beforeClick: beforeClick,
+            onCheck: onCheck
+        }
+    };
+    function beforeClick(treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.checkNode(treeNode, !treeNode.checked, null, true);
+        return false;
+    }
+    function onCheck(e, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+                nodes = zTree.getCheckedNodes(true),
+                v = "";
+        for (var i=0, l=nodes.length; i<l; i++) {
+            v += nodes[i].name + ",";
+        }
+        if (v.length > 0 ) v = v.substring(0, v.length-1);
+        var cityObj = $("#citySel");
+        cityObj.attr("value", v);
+    }
+    function showMenu() {
+        var cityObj = $("#citySel");
+        var cityOffset = $("#citySel").offset();
+        $("#menuContent").css({left:cityOffset.left + "px", top:cityOffset.top + cityObj.outerHeight() + "px"}).slideDown("fast");
+        $(".zTreeDemoBackground").bind("mousedown", onBodyDown);
+    }
+    function hideMenu() {
+        $("#menuContent").fadeOut("fast");
+        $(".zTreeDemoBackground").unbind("mousedown", onBodyDown);
+    }
+    function onBodyDown(event) {
+        if (!(event.target.id == "menuBtn" || event.target.id == "citySel" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length>0)) {
+            hideMenu();
+        }
+    }
     $(function() {
         $('#roletable').datagrid({
             url: '${pageContext.request.contextPath }/role/findList.do',
@@ -76,8 +137,8 @@
         $("<div></div>").dialog({
             id:'dlg',
             title: '添加',
-            width : 400,
-            height : 300,
+            width : 600,
+            height : 400,
             modal: true,
             href:'${pageContext.request.contextPath }/role/toAdd.do',
             onClose:function(){
@@ -113,17 +174,31 @@
                     $("#dlg").dialog('destroy');
                 }
             } ],
-            onLoad : function() {
-                //初始化表单数据
-            }
+        onLoad : function() {
+            //初始化表单数据
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url:"${pageContext.request.contextPath }/resource/getZtree.do", //把表单数据发送到ajax.jsp
+                    data:{roleid:''},
+                    async: false,
+                    error: function(request) {
+                        alert("发送请求失败！");
+
+                    },success: function(data) {
+                        var treeData =$.parseJSON(data);
+                        $.fn.zTree.init($("#treeDemo"), setting, treeData);
+                    }
+                });
+        }
         });
     }
     function toShow(id){
         $("<div></div>").dialog({
             id:'dlg',
             title: '查看',
-            width : 400,
-            height : 300,
+            width : 600,
+            height : 400,
             modal: true,
             href:'${pageContext.request.contextPath }/role/toAdd.do',
             onClose:function(){
@@ -178,8 +253,8 @@
         $('<div></div>').dialog({
             id:'dlg',
             title: '编辑',
-            width : 400,
-            height : 300,
+            width : 600,
+            height : 400,
             modal: true,
             href:'${pageContext.request.contextPath }/role/toAdd.do',
             onClose:function(){

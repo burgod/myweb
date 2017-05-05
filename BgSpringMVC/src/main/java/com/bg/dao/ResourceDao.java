@@ -20,4 +20,5 @@ public interface ResourceDao {
     void deleteResource(String id);
     Resource findById(String id);
     void updateResource(Resource resource);
+    List<Resource> getAllResources(String roleid);
 }

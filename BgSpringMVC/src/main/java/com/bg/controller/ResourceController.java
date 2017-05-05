@@ -2,6 +2,7 @@ package com.bg.controller;
 
 import com.bg.common.ComboBox;
 import com.bg.common.Page;
+import com.bg.common.Ztree;
 import com.bg.dao.ResourceDao;
 import com.bg.model.Resource;
 import com.bg.model.ResourceTable;
@@ -103,5 +104,12 @@ public class ResourceController {
     public String updateResource(Resource resource){
         iResourceService.updateResource(resource);
         return "success";
+    }
+
+    @RequestMapping(value="getZtree")
+    @ResponseBody
+    public String getResourceZtree(@RequestParam(value="roleid")String id){
+        List<Ztree> ztrees = iResourceService.getAllResources(id);
+        return GsonUtils.bean2json(ztrees);
     }
 }

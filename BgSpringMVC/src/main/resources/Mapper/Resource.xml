@@ -52,4 +52,10 @@
     <select id="findPreById"  resultType="com.bg.model.Resource" parameterType="java.lang.String">
         select RESOURCEID,resourcename from resource where RESOURCEID=(select PRESOURCEID from resource  where RESOURCEID=#{id})
     </select>
+    <select id="getAllResources" resultType="com.bg.model.Resource" parameterType="java.lang.String">
+        select * from resource
+        <if test="_parameter != null and _parameter!=''">
+            and roleid =#{roleid}
+        </if>
+    </select>
 </mapper>

@@ -1,5 +1,6 @@
 package com.bg.service;
 
+import com.bg.common.Ztree;
 import com.bg.model.Resource;
 import com.bg.model.ResourceTable;
 
@@ -18,4 +19,5 @@ public interface IResourceService {
     void deleteResource(String id);
     Resource findById(String id);
     void updateResource(Resource resource);
+    List<Ztree> getAllResources(String roleid);
 }
