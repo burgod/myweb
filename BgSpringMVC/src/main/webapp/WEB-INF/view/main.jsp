@@ -19,141 +19,100 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/zTreeStyle/zTreeStyle.css">
     <style>
-        /*
-                author :前端一枚  努力学习中 qq：815183231;
-        */
-
-        /*简单粗暴重置默认样式===============================*/
-        *{ margin: 0; padding: 0; }
-        img{border:0;}
-        ul,li{list-style-type:none;}
-        a {color:#00007F;text-decoration:none;}
-        a:hover {color:#bd0a01;text-decoration:underline;}
-        .treebox{ width: 200px; margin-left: 0px; background-color:#1a6cb9; height: 100%;float: left}
-        .mymenu{ overflow: hidden; border-color: #ddd; border-style: solid ; border-width: 0 1px 1px ; }
-        /*第一层*/
-        .mymenu li.level1>a{
-            display:block;
-            height: 45px;
-            line-height: 45px;
-            color: #fff;
-            padding-left: 50px;
-            border-bottom: 1px solid #000;
-            font-size: 16px;
-            position: relative;
-            transition:all .5s ease 0s;
-        }
-        .mymenu li.level1 a:hover{ text-decoration: none;background-color:#326ea5;   }
-        .mymenu li.level1 a.current{ background: #0f4679; }
-
-        /*============修饰图标*/
-        .ico{ width: 20px; height: 20px; display:block;   position: absolute; left: 20px; top: 10px; background-repeat: no-repeat; background-image: url(${pageContext.request.contextPath }/images/ico1.png); }
-
-        /*============小箭头*/
-        .level1 i{ width: 20px; height: 10px; background-image:url(${pageContext.request.contextPath }/images/arrow.png); background-repeat: no-repeat; display: block; position: absolute; right: 20px; top: 20px; }
-        .level1 i.down{ background-position: 0 -10px; }
-
-        .ico1{ background-position: 0 0; }
-        .ico2{ background-position: 0 -20px; }
-        .ico3{ background-position: 0 -40px; }
-        .ico4{ background-position: 0 -60px; }
-        .ico5{ background-position: 0 -80px; }
-
-        /*第二层*/
-        .mymenu li ul{ overflow: hidden; }
-        .mymenu li ul.level2{ display: none;background: #0f4679;  }
-        .mymenu li ul.level2 li a{
-            display: block;
-            height: 45px;
-            line-height: 45px;
-            color: #fff;
-            text-indent: 60px;
-            /*border-bottom: 1px solid #ddd; */
-            font-size: 14px;
-            transition:all 1s ease 0s;
-        }
-
+        .ztree li a.level0 {width:200px;height: 20px; text-align: center; display:block; background-color: #0B61A4; border:1px silver solid;}
+        .ztree li a.level0.cur {background-color: #66A3D2; }
+        .ztree li a.level0 span {display: block; color: white; padding-top:3px; font-size:12px; font-weight: bold;word-spacing: 2px;}
+        .ztree li a.level0 span.button { float:right; margin-left: 10px; visibility: visible;display:none;}
+        .ztree li span.button.switch.level0 {display:none;}
     </style>
 </head>
 <body>
 <%--
 <script src="/demos/googlegg.js"></script>
 --%>
-<div>
-<div class="treebox">
-    <ul class="mymenu">
-        <li class="level1">
-            <a href="#none"><em class="ico ico1"></em>导航一<i class="down"></i></a>
-            <ul class="level2">
-                <li><a href="javascript:TO_METCH();">用户管理</a></li>
-                <li><a href="javascript:to_role();">角色管理</a></li>
-                <li><a href="javascript:to_resource();">资源权限</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-            </ul>
-        </li>
-        <li class="level1">
-            <a href="#none"><em class="ico ico2"></em>导航一<i></i></a>
-            <ul class="level2">
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-            </ul>
-        </li>
-        <li class="level1">
-            <a href="#none"><em class="ico ico3"></em>导航一<i></i></a>
-            <ul class="level2">
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-            </ul>
-        </li>
-        <li class="level1">
-            <a href="#none"><em class="ico ico4"></em>导航一<i></i></a>
-            <ul class="level2">
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-            </ul>
-        </li>
-        <li class="level1">
-            <a href="#none"><em class="ico ico5"></em>导航一<i></i></a>
-            <ul class="level2">
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-                <li><a href="javascript:;">导航选项</a></li>
-            </ul>
-        </li>
-    </ul>
-</div>
-<div style="float:left;width:80%">
-    <div class="content" style="width:100%"></div>
-</div>
+<div class="content_wrap">
+    <div class="zTreeDemoBackground left" id="menuId" style="float: left;height: 100%;">
+        <ul id="treeMenu" class="ztree"></ul>
+    </div>
+    <div class="right" style="float: left;" id="contentId">
+        <div class="content" style="width:100%"></div>
+    </div>
 </div>
 <script>
+    var curMenu = null, zTree_Menu = null;
+    var settings = {
+        view: {
+            showLine: true,
+            selectedMulti: false,
+            dblClickExpand: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onNodeCreated: this.onNodeCreated,
+            beforeClick: this.getBeforeClick,
+            onClick: this.onClick
+        }
+    };
     //等待dom元素加载完毕.
+    function getBeforeClick(treeId, node) {
+        if (node.isParent) {
+            if (node.level === 0) {
+                var pNode = curMenu;
+                while (pNode && pNode.level !==0) {
+                    pNode = pNode.getParentNode();
+                }
+                if (pNode !== node) {
+                    var a = $("#" + pNode.tId + "_a");
+                    a.removeClass("cur");
+                    zTree_Menu.expandNode(pNode, false);
+                }
+                a = $("#" + node.tId + "_a");
+                a.addClass("cur");
+                var isOpen = false;
+                for (var i=0,l=node.children.length; i<l; i++) {
+                    if(node.children[i].open) {
+                        isOpen = true;
+                        break;
+                    }
+                }
+                if (isOpen) {
+                    zTree_Menu.expandNode(node, true);
+                    curMenu = node;
+                } else {
+                    zTree_Menu.expandNode(node.children[0].isParent?node.children[0]:node, true);
+                    curMenu = node.children[0];
+                }
+            } else {
+                zTree_Menu.expandNode(node);
+            }
+        }
+        return !node.isParent;
+    }
+    function onClick(e, treeId, node) {
+        $(".content").load("${pageContext.request.contextPath }"+node.resourceurl);
+    }
     $(function(){
-        $(".treebox .level1>a").click(function(){
-            $(this).addClass('current')   //给当前元素添加"current"样式
-                    .find('i').addClass('down')   //小箭头向下样式
-                    .parent().next().slideDown('slow','easeOutQuad')  //下一个元素显示
-                    .parent().siblings().children('a').removeClass('current')//父元素的兄弟元素的子元素去除"current"样式
-                    .find('i').removeClass('down').parent().next().slideUp('slow','easeOutQuad');//隐藏
-            return false; //阻止默认时间
-        });
-    })
-    function TO_METCH(){
-        $(".content").load("${pageContext.request.contextPath }/userAction/myWelcome.do");
-    }
-    function to_role(){
-        $(".content").load("${pageContext.request.contextPath }/role/toView.do");
-    }
-    function to_resource(){
-        $(".content").load("${pageContext.request.contextPath }/resource/toView.do");
-    }
+        var leftWidth=document.body.clientWidth - $('#menuId').width()-250;
+        $('#contentId').width(leftWidth);
+        $.ajax({
+            url:'${pageContext.request.contextPath }/login/menu.do',
+            type:'POST',
+            data:{username:'lu'},
+            success:function(data){
+                var treeData =$.parseJSON(data);
+                $.fn.zTree.init($("#treeMenu"), settings, treeData);
+                zTree_Menu = $.fn.zTree.getZTreeObj("treeMenu");
+                curMenu = zTree_Menu.getNodes()[0].children[0];
+                zTree_Menu.selectNode(curMenu);
+                var a = $("#" + zTree_Menu.getNodes()[0].tId + "_a");
+                a.addClass("cur");
+            }
+        })
+    });
 </script>
 </body>
 </html>

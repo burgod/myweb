@@ -1,5 +1,6 @@
 package com.bg.service.impl;
 
+import com.bg.common.MenuTree;
 import com.bg.common.Ztree;
 import com.bg.dao.ResourceDao;
 import com.bg.model.Resource;
@@ -73,5 +74,19 @@ public class ResourceServiceImpl implements IResourceService{
             ztrees.add(z);
         }
         return ztrees;
+    }
+
+    public List<MenuTree> getResourceByUser(String username) {
+        List<Resource> lists = resourceDao.getResourceByUser(username);
+        List<MenuTree> menuTrees = new ArrayList<MenuTree>();
+        for(Resource r:lists){
+            MenuTree m = new MenuTree();
+            m.setName(r.getResourcename());
+            m.setpId(r.getPresourceid()+"");
+            m.setId(r.getResourceid()+"");
+            m.setResourceurl(r.getResourceurl());
+            menuTrees.add(m);
+        }
+        return menuTrees;
     }
 }

@@ -3,7 +3,6 @@ package com.bg.controller;
 import com.bg.common.ComboBox;
 import com.bg.common.Page;
 import com.bg.common.Ztree;
-import com.bg.dao.ResourceDao;
 import com.bg.model.Resource;
 import com.bg.model.ResourceTable;
 import com.bg.service.IResourceService;
@@ -36,7 +35,7 @@ public class ResourceController {
 
     @RequestMapping(value="findList")
     @ResponseBody
-    public String findList(@RequestParam(value="page", required=false) String page, @RequestParam(value="rows", required=false) String rows){
+    public String findList(@RequestParam(value="page", required=false) String page, @RequestParam(value="rows", required=false) String rows,@RequestParam(value="presourceid",required = false)String presourceid){
         Page pageBean = new Page(Integer.parseInt(page), Integer.parseInt(rows));
         Map reMap = new HashMap();
         Map paraMap = new HashMap();
@@ -44,6 +43,7 @@ public class ResourceController {
         //paraMap.put("title", title);
         paraMap.put("firstPage", pageBean.getFirstPage());
         paraMap.put("rows", pageBean.getRows());
+        paraMap.put("presourceid",presourceid);
 
         List<ResourceTable> results = iResourceService.findList(paraMap);
         long total = iResourceService.findtotal(paraMap);

@@ -23,4 +23,5 @@ public interface ResourceDao {
     void updateResource(Resource resource);
     List<Resource> getAllResources();
     List<RoleResource> getCheckResource(String roleid);
+    List<Resource> getResourceByUser(String username);
 }

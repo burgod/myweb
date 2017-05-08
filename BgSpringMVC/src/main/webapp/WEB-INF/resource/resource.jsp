@@ -16,8 +16,8 @@
 <body>
 <span> >>权限信息 </span>
 <div id="tb" class="datagrid-toolbar" style="padding:2px 5px;">
-    父资源: <input class="easyui-combobox" id="pre" style="width:110px">
-    子资源: <input class="easyui-combobox" id="re" style="width:110px">
+    父资源: <input class="easyui-combobox" id="pare" name="pare" style="width:110px">
+    子资源: <input class="easyui-combobox" id="are" style="width:110px">
     <a href="javascript:tableFresh()" class="easyui-linkbutton" iconCls="icon-search">Search</a>
 </div>
 <table id="resourcetable" class="easyui-datagrid" style="width:100%;height:300px"  data-options="fitColumns:true,singleSelect:true,pagination:true,toolbar:'#tb'">
@@ -71,6 +71,7 @@
 
             }
         });
+        initCombobox("pare",'');
     });
     function open_add(){
         //$("#dlg").dialog('open').dialog('setTitle','添加用户');
@@ -177,8 +178,11 @@
     }
     function tableFresh(){
         $('#resourcetable').datagrid({
+            onBeforeLoad:function(prm){
+                prm.page=1;
+            },
             queryParams: {
-                'rolename':$('#rolename').val(),
+                'presourceid':$("input[name='pare']").val(),
             }
         });
     }
