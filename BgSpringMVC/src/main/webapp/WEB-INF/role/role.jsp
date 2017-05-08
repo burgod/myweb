@@ -76,11 +76,15 @@
         var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
                 nodes = zTree.getCheckedNodes(true),
                 v = "";
+                zid ="";
         for (var i=0, l=nodes.length; i<l; i++) {
             v += nodes[i].name + ",";
+            zid +=nodes[i].id + ",";
         }
         if (v.length > 0 ) v = v.substring(0, v.length-1);
+        if (zid.length >0) zid = zid.substring(0, zid.length-1);
         var cityObj = $("#citySel");
+        $('#ztreeIds').val(zid);
         cityObj.attr("value", v);
     }
     function showMenu() {
@@ -109,9 +113,9 @@
                 {field: 'createuser', title: '创建者', width: 100},
                 {field:'opt',title:'操作',width:100,align:'center',
                     formatter:function(value,rec,index){
-                        var s = '<a href="#" mce_href="#" onclick="toShow(\''+ rec.id + '\')">查看</a> ';
-                        var e = '<a href="#" mce_href="#" onclick="edit(\''+ rec.id + '\')">编辑</a> ';
-                        var d = '<a href="#" mce_href="#" onclick="del(\''+ rec.id +'\')">删除</a> ';
+                        var s = '<a href="#" mce_href="#" onclick="toShow(\''+ rec.roleid + '\')">查看</a> ';
+                        var e = '<a href="#" mce_href="#" onclick="edit(\''+ rec.roleid + '\')">编辑</a> ';
+                        var d = '<a href="#" mce_href="#" onclick="del(\''+ rec.roleid +'\')">删除</a> ';
                         return s+e+d;
                     }
                 }
@@ -222,6 +226,21 @@
                         $("input[name='rolename']").val(sin.rolename);
                     }
                 });
+                //初始化表单数据
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url:"${pageContext.request.contextPath }/resource/getZtree.do", //把表单数据发送到ajax.jsp
+                    data:{roleid:id},
+                    async: false,
+                    error: function(request) {
+                        alert("发送请求失败！");
+
+                    },success: function(data) {
+                        var treeData =$.parseJSON(data);
+                        $.fn.zTree.init($("#treeDemo"), setting, treeData);
+                    }
+                });
             }
         });
     }
@@ -292,7 +311,6 @@
             } ],
             onLoad : function() {
                 //初始化表单数据
-                //初始化表单数据
                 $.ajax({
                     url: '${pageContext.request.contextPath }/role/findById.do',
                     type:'POST',
@@ -301,6 +319,21 @@
                         var sin = $.parseJSON(data);
                         $("input[name='rolename']").val(sin.rolename);
                         $("input[name='id']").val(sin.id);
+                    }
+                });
+                //初始化表单数据
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url:"${pageContext.request.contextPath }/resource/getZtree.do", //把表单数据发送到ajax.jsp
+                    data:{roleid:id},
+                    async: false,
+                    error: function(request) {
+                        alert("发送请求失败！");
+
+                    },success: function(data) {
+                        var treeData =$.parseJSON(data);
+                        $.fn.zTree.init($("#treeDemo"), setting, treeData);
                     }
                 });
             }

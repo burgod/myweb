@@ -11,6 +11,7 @@ public class Role {
     private Date createtime;
     private Date updatetime;
     private String createuser;
+    private String ztreeIds;
 
     public Integer getRoleid() {
         return roleid;
@@ -50,5 +51,13 @@ public class Role {
 
     public void setCreateuser(String createuser) {
         this.createuser = createuser;
+    }
+
+    public String getZtreeIds() {
+        return ztreeIds;
+    }
+
+    public void setZtreeIds(String ztreeIds) {
+        this.ztreeIds = ztreeIds;
     }
 }

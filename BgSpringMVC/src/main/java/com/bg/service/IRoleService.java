@@ -10,9 +10,9 @@ import java.util.Map;
  * Created by yitop on 2017/4/24.
  */
 public interface IRoleService {
-    public void addRole(Role role);
-    public List<Role> findList(Map<String,String> map);
-    public long findtotal(Map<String,String> map);
+    void addRole(Role role,String[] ztreeIds);
+    List<Role> findList(Map<String,String> map);
+    long findtotal(Map<String,String> map);
     Role findById(String id);
     void deleteRole(String id);
     void updateRole(Role role);

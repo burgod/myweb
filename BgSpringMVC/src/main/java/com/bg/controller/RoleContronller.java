@@ -8,9 +8,7 @@ import com.bg.service.IRoleService;
 import com.bg.utils.GsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
 
@@ -34,13 +32,14 @@ public class RoleContronller {
         return "role/addOrEdit";
     }
 
-    @RequestMapping(value="addRole")
+    @RequestMapping(value="addRole",method = RequestMethod.POST)
     @ResponseBody
     public String addRole(Role role){
         role.setCreatetime(new Date());
         role.setUpdatetime(new Date());
         role.setCreateuser("lu");
-        iRoleService.addRole(role);
+        String [] ztreeIds = role.getZtreeIds().split(",");
+        iRoleService.addRole(role,ztreeIds);
         return "success";
     }
 
@@ -109,6 +108,5 @@ public class RoleContronller {
         }
         return GsonUtils.bean2json(ur);
     }
-
 
 }

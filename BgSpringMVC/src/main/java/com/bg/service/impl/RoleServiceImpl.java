@@ -6,7 +6,9 @@ import com.bg.model.UserRole;
 import com.bg.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -19,8 +21,15 @@ public class RoleServiceImpl implements IRoleService{
     @Autowired
     private RoleDao roleDao;
 
-    public void addRole(Role role) {
+    @Transactional
+    public void addRole(Role role,String[] ztreeIds) {
         roleDao.addRole(role);
+        for(String s:ztreeIds){
+            Map<String,String> map = new HashMap<String,String>();
+            map.put("roleid",role.getRoleid().toString());
+            map.put("resourceid",s);
+            roleDao.addRoleResource(map);
+        }
     }
 
     public List<Role> findList(Map<String, String> map) {

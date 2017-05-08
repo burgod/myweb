@@ -2,6 +2,7 @@ package com.bg.dao;
 
 import com.bg.model.Resource;
 import com.bg.model.ResourceTable;
+import com.bg.model.RoleResource;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,5 +21,6 @@ public interface ResourceDao {
     void deleteResource(String id);
     Resource findById(String id);
     void updateResource(Resource resource);
-    List<Resource> getAllResources(String roleid);
+    List<Resource> getAllResources();
+    List<RoleResource> getCheckResource(String roleid);
 }

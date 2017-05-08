@@ -12,9 +12,9 @@ import java.util.Map;
  */
 @Repository
 public interface RoleDao {
-    public void addRole(Role role);
-    public List<Role> findList(Map<String,String> map);
-    public long findtotal(Map<String,String> map);
+    void addRole(Role role);
+    List<Role> findList(Map<String,String> map);
+    long findtotal(Map<String,String> map);
     Role findById(String id);
     void deleteRole(String id);
     void updateRole(Role role);
@@ -22,4 +22,5 @@ public interface RoleDao {
     void addUserRole(UserRole userRole);
     List<UserRole> findByUserId(String id);
     void deleteByUserName(String username);
+    void addRoleResource(Map<String,String> map);
 }

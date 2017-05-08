@@ -24,6 +24,7 @@
                         <div id="menuContent" class="menuContent" style="display:none;position:inherit; z-index:999999;background-color: beige;overflow:scroll;" >
                             <ul id="treeDemo" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
                         </div>
+                        <input type="hidden" name="ztreeIds" id="ztreeIds">
                     </td>
                 </tr>
             </table>
