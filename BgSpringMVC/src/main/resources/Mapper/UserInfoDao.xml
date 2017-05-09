@@ -48,4 +48,7 @@
         </trim>
         WHERE id=#{id}
     </update>
+    <select id="findUser" parameterType="UserInfo" resultType="com.bg.model.UserInfo">
+        select * from userinfo where name=#{name} and password=#{password}
+    </select>
 </mapper>

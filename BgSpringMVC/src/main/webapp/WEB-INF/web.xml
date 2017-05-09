@@ -55,6 +55,7 @@
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
     <url-pattern>*.do</url-pattern>
+    <url-pattern>*.htm</url-pattern>
   </servlet-mapping>
 
   <!-- 解决乱码的过滤器 -->
@@ -75,6 +76,24 @@
   <filter-mapping>
     <filter-name>CharacterEncodingFilter</filter-name>
     <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>session</filter-name>
+    <filter-class>com.bg.filter.SessionFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>session</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+
+  <filter>
+    <filter-name>viewFilter</filter-name>
+    <filter-class>com.bg.filter.ViewFilter</filter-class>
+  </filter>
+  <filter-mapping>
+    <filter-name>viewFilter</filter-name>
+    <url-pattern>*.htm</url-pattern>
   </filter-mapping>
 
   <!--<filter>

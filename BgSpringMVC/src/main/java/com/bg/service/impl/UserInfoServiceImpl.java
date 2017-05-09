@@ -68,4 +68,7 @@ public class UserInfoServiceImpl implements IUserInfoService{
         userInfoDao.updateUser(userInfo);
     }
 
+    public UserInfo findUser(UserInfo userInfo) {
+        return userInfoDao.findUser(userInfo);
+    }
 }

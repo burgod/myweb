@@ -15,19 +15,51 @@
             padding:20px;
         }
     </style>
+    <script src="${pageContext.request.contextPath }/js/jquery-1.8.0.min.js"></script>
     <title></title>
 </head>
 
 <body>
 <h1>DDU</h1>
-<form action="${pageContext.request.contextPath }/userAction/toWelcome.do" method="post">
-    用户名：<input name="name"/> <br/>
-    用户年龄<input name="age"/><br/>
-    <input type="submit" value="save"/>
+<form action="" method="post" id="loginform">
+    <table>
+        <tr>
+            <td>用户名：</td>
+            <td><input name="name"/> </td>
+        </tr>
+        <tr>
+            <td>密码：</td>
+            <td><input name="password"/></td>
+        </tr>
+    </table>
+    <input type="button" onclick="login()" value="登录"/>
 </form>
 </body>
 </html>
-
+<script type="text/javascript">
+    function login(){
+        $.ajax({
+            cache: true,
+            type: 'POST',
+            url:"${pageContext.request.contextPath }/login/login.do",
+            data:$('#loginform').serialize(),// 你的formid
+            async: false,
+            error: function(request) {
+                alert("用户或密码错误");
+                return;
+            },
+            success: function(data) {
+                var res = data;
+                if(res=='wrong'){
+                    alert("用户或密码错误");
+                    return;
+                }else if(res=='ok'){
+                    window.location.href="${pageContext.request.contextPath }/userAction/toWelcome.htm";
+                }
+            }
+        });
+    }
+</script>
 <%--<!DOCTYPE html>
 <html>
 <head>

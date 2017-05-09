@@ -9,10 +9,11 @@ import java.util.Map;
  * Created by yitop on 2017/3/16.
  */
 public interface IUserInfoService {
-    public void add(UserInfo info,String [] rolesId);
-    public List<UserInfo> findList(Map<String,String> map);
-    public long findtotal(Map<String,String> map);
-    public void deleteUser(String id);
-    public UserInfo findByid(String id);
-    public void updateUser(UserInfo userInfo,String [] rolesId);
+    void add(UserInfo info,String [] rolesId);
+    List<UserInfo> findList(Map<String,String> map);
+    long findtotal(Map<String,String> map);
+    void deleteUser(String id);
+    UserInfo findByid(String id);
+    void updateUser(UserInfo userInfo,String [] rolesId);
+    UserInfo findUser(UserInfo userInfo);
 }

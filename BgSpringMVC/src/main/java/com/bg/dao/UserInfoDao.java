@@ -11,10 +11,11 @@ import java.util.Map;
  */
 @Repository
 public interface UserInfoDao {
-    public void add(UserInfo info);
-    public List<UserInfo> findList(Map<String,String> map);
-    public long findtotal(Map<String,String> map);
-    public void deleteUser(String id);
-    public UserInfo findByid(String id);
-    public void updateUser(UserInfo info);
+    void add(UserInfo info);
+    List<UserInfo> findList(Map<String,String> map);
+    long findtotal(Map<String,String> map);
+    void deleteUser(String id);
+    UserInfo findByid(String id);
+    void updateUser(UserInfo info);
+    UserInfo findUser(UserInfo info);
 }

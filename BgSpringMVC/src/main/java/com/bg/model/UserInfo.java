@@ -9,10 +9,14 @@ import java.util.Date;
  * Created by yitop on 2017/3/16.
  */
 public class UserInfo {
+
+    public static final String Cookie_Key_UserName = "autoUserName";
+    public static final String Cookie_Key_PwdKey = "autoPwKey";
+    public static final String Cookie_DESede_Key = "ThisIsTwbKey@_2014072315";
     private Integer id;
     private String name;
     private Integer age;
-    private String passwd;
+    private String password;
     private String phone;
     private String email;
     private Date createtime;
@@ -42,12 +46,12 @@ public class UserInfo {
         this.age = age;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {
