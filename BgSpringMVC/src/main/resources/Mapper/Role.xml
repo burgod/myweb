@@ -41,7 +41,7 @@
             <if test="rolename!=null and rolename!=''">rolename=#{rolename},</if>
             <if test="updatetime!=null and updatetime!=''">updatetime=#{updatetime},</if>
         </trim>
-        WHERE roleid=#{id}
+        WHERE roleid=#{roleid}
     </update>
     <select id="getAllRole" resultType="com.bg.model.Role">
         select * from role
@@ -61,4 +61,7 @@
     <insert id="addRoleResource" parameterType="map">
         insert into roleresource(roleid,resourceid) values(#{roleid},#{resourceid})
     </insert>
+    <delete id="delRoleResource" parameterType="java.lang.String">
+        delete from roleresource where roleid=#{roleid}
+    </delete>
 </mapper>

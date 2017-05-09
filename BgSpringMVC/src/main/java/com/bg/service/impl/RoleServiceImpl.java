@@ -48,8 +48,16 @@ public class RoleServiceImpl implements IRoleService{
         roleDao.deleteRole(id);
     }
 
-    public void updateRole(Role role) {
+    @Transactional
+    public void updateRole(Role role,String[] ztreeIds) {
         roleDao.updateRole(role);
+        roleDao.delRoleResource(role.getRoleid().toString());
+        for(String s:ztreeIds){
+            Map<String,String> map = new HashMap<String,String>();
+            map.put("roleid",role.getRoleid().toString());
+            map.put("resourceid",s);
+            roleDao.addRoleResource(map);
+        }
     }
 
     public List<Role> getAllRole() {

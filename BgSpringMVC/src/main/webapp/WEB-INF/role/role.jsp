@@ -318,7 +318,7 @@
                     success:function(data){
                         var sin = $.parseJSON(data);
                         $("input[name='rolename']").val(sin.rolename);
-                        $("input[name='id']").val(sin.id);
+                        $("input[name='roleid']").val(sin.roleid);
                     }
                 });
                 //初始化表单数据

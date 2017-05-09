@@ -23,4 +23,5 @@ public interface RoleDao {
     List<UserRole> findByUserId(String id);
     void deleteByUserName(String username);
     void addRoleResource(Map<String,String> map);
+    void delRoleResource(String roleid);
 }

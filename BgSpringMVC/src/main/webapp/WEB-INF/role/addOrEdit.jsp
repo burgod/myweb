@@ -6,7 +6,7 @@
         <form id="fm">
             <table cellspacing="10px;">
                 <tr>
-                    <input name="id" class="easyui-validatebox" required="true" style="width: 200px;display: none">
+                    <input name="roleid" class="easyui-validatebox" required="true" style="width: 200px;display: none">
                     <td>角色名称：</td>
                     <td><input name="rolename" class="easyui-validatebox" required="true" style="width: 200px;"></td>
                 </tr>

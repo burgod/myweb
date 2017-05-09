@@ -80,7 +80,8 @@ public class RoleContronller {
     @ResponseBody
     public String updateRole(Role role){
         role.setUpdatetime(new Date());
-        iRoleService.updateRole(role);
+        String [] ztreeIds = role.getZtreeIds().split(",");
+        iRoleService.updateRole(role,ztreeIds);
         return "success";
     }
 

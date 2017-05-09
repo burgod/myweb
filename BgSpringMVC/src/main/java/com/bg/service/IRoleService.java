@@ -15,7 +15,7 @@ public interface IRoleService {
     long findtotal(Map<String,String> map);
     Role findById(String id);
     void deleteRole(String id);
-    void updateRole(Role role);
+    void updateRole(Role role,String[] ztreeIds);
     List<Role> getAllRole();
     void addUserRole(UserRole userRole);
     List<UserRole> findByUserId(String id);

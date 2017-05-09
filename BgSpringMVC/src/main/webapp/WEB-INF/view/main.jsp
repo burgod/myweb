@@ -31,7 +31,7 @@
 <script src="/demos/googlegg.js"></script>
 --%>
 <div class="content_wrap">
-    <div class="zTreeDemoBackground left" id="menuId" style="float: left;height: 100%;">
+    <div class="zTreeDemoBackground left" id="menuId" style="float: left;height: 100%;background-color: #0B61A4">
         <ul id="treeMenu" class="ztree"></ul>
     </div>
     <div class="right" style="float: left;" id="contentId">
