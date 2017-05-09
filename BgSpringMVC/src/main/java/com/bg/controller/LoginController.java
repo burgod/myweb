@@ -2,7 +2,6 @@ package com.bg.controller;
 
 import com.bg.common.MenuTree;
 import com.bg.model.PurviewSession;
-import com.bg.model.Resource;
 import com.bg.model.UserInfo;
 import com.bg.service.IResourceService;
 import com.bg.service.IUserInfoService;
@@ -55,6 +54,15 @@ public class LoginController {
         List<MenuTree> menus = iResourceService.getResourceByUser(username);
         return GsonUtils.bean2json(menus);
     }
+
+    @RequestMapping(value="logout")
+    @ResponseBody
+    public String logout(HttpServletRequest request){
+        SessionHelper.remove(request);
+        iUserInfoService.logout();
+        return "success";
+    }
+
 
     public void saveSessioin(HttpServletRequest request, HttpServletResponse response, PurviewSession purviewSession){
         // 设置Cookie,保持8小时内自动登录

@@ -16,4 +16,5 @@ public interface IUserInfoService {
     UserInfo findByid(String id);
     void updateUser(UserInfo userInfo,String [] rolesId);
     UserInfo findUser(UserInfo userInfo);
+    void logout();
 }

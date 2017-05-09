@@ -24,12 +24,16 @@
         .ztree li a.level0 span {display: block; color: white; padding-top:3px; font-size:12px; font-weight: bold;word-spacing: 2px;}
         .ztree li a.level0 span.button { float:right; margin-left: 10px; visibility: visible;display:none;}
         .ztree li span.button.switch.level0 {display:none;}
+        .wcolor{color: white;}
     </style>
 </head>
 <body>
 <%--
 <script src="/demos/googlegg.js"></script>
 --%>
+<div style="width: 100%;height:50px;background-color: #0B61A4">
+    <span style="float: right;margin-top:15px"><a href="#" class="wcolor" onclick="logout()"><b>登出</b></a></span>
+</div>
 <div class="content_wrap">
     <div class="zTreeDemoBackground left" id="menuId" style="float: left;height: 100%;background-color: #0B61A4">
         <ul id="treeMenu" class="ztree"></ul>
@@ -113,6 +117,15 @@
             }
         })
     });
+    function logout(){
+        $.ajax({
+            url:'${pageContext.request.contextPath }/login/logout.do',
+            data:'',
+            success:function (data) {
+                window.location.href="${pageContext.request.contextPath }"
+            }
+        })
+    }
 </script>
 </body>
 </html>
