@@ -7,6 +7,7 @@ import com.bg.model.Resource;
 import com.bg.model.ResourceTable;
 import com.bg.model.RoleResource;
 import com.bg.service.IResourceService;
+import com.bg.utils.SessionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -57,7 +58,7 @@ public class ResourceServiceImpl implements IResourceService{
 
     public List<Ztree> getAllResources(String roleid) {
         List<Ztree> ztrees = new ArrayList<Ztree>();
-        List<Resource> resources = resourceDao.getAllResources();
+        List<Resource> resources = resourceDao.getResourceByUser(SessionHelper.get().getUserInfo().getName());
         List<RoleResource> roleResources = resourceDao.getCheckResource(roleid);
         for(Resource c :resources){
             Ztree z = new Ztree();
