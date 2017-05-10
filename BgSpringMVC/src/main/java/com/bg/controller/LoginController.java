@@ -7,6 +7,7 @@ import com.bg.service.IResourceService;
 import com.bg.service.IUserInfoService;
 import com.bg.utils.DESEncrypt;
 import com.bg.utils.GsonUtils;
+import com.bg.utils.MD5;
 import com.bg.utils.SessionHelper;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,9 @@ public class LoginController {
     @RequestMapping(value="login")
     @ResponseBody
     public String login(HttpServletRequest request, HttpServletResponse response, UserInfo userInfo){
+        if(!userInfo.getName().equals("lu")){
+            userInfo.setPassword(MD5.md5(userInfo.getPassword().trim(),"utf-8"));
+        }
         UserInfo re = iUserInfoService.findUser(userInfo);
         List<MenuTree> menus = iResourceService.getResourceByUser(re.getName());
         PurviewSession purviewSession = new PurviewSession();
@@ -50,8 +54,9 @@ public class LoginController {
 
     @RequestMapping(value="menu")
     @ResponseBody
-    public String getMenu(@RequestParam(value="username",required = false)String username){
-        List<MenuTree> menus = iResourceService.getResourceByUser(username);
+    public String getMenu(){
+        UserInfo userInfo = SessionHelper.get().getUserInfo();
+        List<MenuTree> menus = iResourceService.getResourceByUser(userInfo.getName());
         return GsonUtils.bean2json(menus);
     }
 

@@ -105,7 +105,7 @@
         $.ajax({
             url:'${pageContext.request.contextPath }/login/menu.do',
             type:'POST',
-            data:{username:'lu'},
+            data:'',
             success:function(data){
                 var treeData =$.parseJSON(data);
                 $.fn.zTree.init($("#treeMenu"), settings, treeData);

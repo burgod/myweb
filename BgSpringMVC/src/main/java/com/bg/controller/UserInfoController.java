@@ -6,6 +6,7 @@ import com.bg.model.UserRole;
 import com.bg.service.IRoleService;
 import com.bg.service.IUserInfoService;
 import com.bg.utils.GsonUtils;
+import com.bg.utils.MD5;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +47,7 @@ public class UserInfoController{
     @ResponseBody
     public String saveUser(UserInfo userInfo,@RequestParam(value="roleSelect")String [] roleids){
         userInfo.setCreatetime(new Date());
+        userInfo.setPassword(MD5.md5("123654","utf-8"));//新用户默认密码
         iUserInfoService.add(userInfo,roleids);
         return "success";
     }
