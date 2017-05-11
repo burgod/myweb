@@ -107,6 +107,10 @@ public class UserInfoController{
     @RequestMapping(value="updateUser")
     @ResponseBody
     public String updateUser(UserInfo userInfo,@RequestParam(value="roleSelect")String [] roleids){
+        int num = iUserInfoService.findByNameNotId(userInfo);
+        if(num!=0){
+            return "wrong";
+        }
         iUserInfoService.updateUser(userInfo,roleids);
         return "success";
     }

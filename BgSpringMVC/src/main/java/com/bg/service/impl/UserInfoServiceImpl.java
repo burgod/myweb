@@ -102,4 +102,8 @@ public class UserInfoServiceImpl implements IUserInfoService{
     public void updatePwd(Map<String, String> map) {
         userInfoDao.updatePwd(map);
     }
+
+    public int findByNameNotId(UserInfo info) {
+        return userInfoDao.findByNameNotId(info);
+    }
 }

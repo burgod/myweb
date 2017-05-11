@@ -57,4 +57,7 @@
     <update id="updatePwd" parameterType="map">
         update userinfo set password=#{newpassword} where name=#{name}
     </update>
+    <select id="findByNameNotId" parameterType="UserInfo" resultType="java.lang.Integer">
+        select count(*) from userinfo where name=#{name} and id!=#{id}
+    </select>
 </mapper>

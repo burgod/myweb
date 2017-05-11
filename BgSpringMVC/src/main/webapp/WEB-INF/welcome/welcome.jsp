@@ -212,6 +212,10 @@
                             alert("发送请求失败！");
 
                         },success: function(data) {
+                            if(data=='wrong'){
+                                alert("该用户已经存在");
+                                return;
+                            }
                             alert("修改成功");
                             $('#mytable').datagrid("reload");
                             $("#dlg").dialog('destroy');

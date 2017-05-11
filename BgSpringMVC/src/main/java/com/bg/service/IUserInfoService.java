@@ -18,4 +18,5 @@ public interface IUserInfoService {
     UserInfo findUser(UserInfo userInfo);
     void logout();
     void updatePwd(Map<String,String> map);
+    int findByNameNotId(UserInfo info);
 }
