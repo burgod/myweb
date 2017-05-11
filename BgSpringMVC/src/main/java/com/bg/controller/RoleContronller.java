@@ -84,6 +84,10 @@ public class RoleContronller {
     @RequestMapping(value="updateRole")
     @ResponseBody
     public String updateRole(Role role){
+        int num = iRoleService.findByRoleNotId(role);
+        if(num!=0){
+            return "wrong";
+        }
         role.setUpdatetime(new Date());
         String [] ztreeIds = role.getZtreeIds().split(",");
         iRoleService.updateRole(role,ztreeIds);

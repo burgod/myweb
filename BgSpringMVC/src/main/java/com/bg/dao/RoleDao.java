@@ -25,4 +25,5 @@ public interface RoleDao {
     void addRoleResource(Map<String,String> map);
     void delRoleResource(String roleid);
     int findRoleByName(String rolename);
+    int findByRoleNotId(Role role);
 }

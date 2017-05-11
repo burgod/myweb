@@ -298,6 +298,10 @@
                             alert("发送请求失败！");
 
                         },success: function(data) {
+                            if(data=='wrong'){
+                                alert("该角色名已存在");
+                                return;
+                            }
                             alert("修改成功");
                             $('#roletable').datagrid("reload");
                             $("#dlg").dialog('destroy');
@@ -338,6 +342,20 @@
                     },success: function(data) {
                         var treeData =$.parseJSON(data);
                         $.fn.zTree.init($("#treeDemo"), setting, treeData);
+                        //初始化树已选
+                        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                        nodes = zTree.getCheckedNodes(true);
+                        v = "";
+                        zid ="";
+                        for (var i=0, l=nodes.length; i<l; i++) {
+                            v += nodes[i].name + ",";
+                            zid +=nodes[i].id + ",";
+                        }
+                        if (v.length > 0 ) v = v.substring(0, v.length-1);
+                        if (zid.length >0) zid = zid.substring(0, zid.length-1);
+                        var cityObj = $("#citySel");
+                        $('#ztreeIds').val(zid);
+                        cityObj.attr("value", v);
                     }
                 });
             }
