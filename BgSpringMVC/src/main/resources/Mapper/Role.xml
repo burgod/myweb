@@ -64,4 +64,7 @@
     <delete id="delRoleResource" parameterType="java.lang.String">
         delete from roleresource where roleid=#{roleid}
     </delete>
+    <select id="findRoleByName" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from role where rolename=#{rolename}
+    </select>
 </mapper>

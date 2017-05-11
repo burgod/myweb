@@ -36,6 +36,10 @@ public class RoleContronller {
     @RequestMapping(value="addRole",method = RequestMethod.POST)
     @ResponseBody
     public String addRole(Role role){
+        int num = iRoleService.findRoleByName(role.getRolename());
+        if(num!=0){
+            return "wrong";
+        }
         role.setCreatetime(new Date());
         role.setUpdatetime(new Date());
         role.setCreateuser(SessionHelper.get().getUserInfo().getName());

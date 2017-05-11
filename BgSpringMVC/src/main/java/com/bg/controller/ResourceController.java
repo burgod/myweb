@@ -81,6 +81,9 @@ public class ResourceController {
     @RequestMapping(value="addResource")
     @ResponseBody
     public String addResource(Resource resource){
+        if(resource.getPresourceid()==null||"".equals(resource.getPresourceid())){
+            resource.setPresourceid(0);
+        }
         iResourceService.addResource(resource);
         return "success";
     }

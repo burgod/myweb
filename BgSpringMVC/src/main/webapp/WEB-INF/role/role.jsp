@@ -163,6 +163,10 @@
                             alert("发送请求失败！");
 
                         },success: function(data) {
+                            if(data=='wrong'){
+                                alert("该角色已经存在");
+                                return;
+                            }
                             alert("添加成功");
                             $('#roletable').datagrid("reload");
                             $("#dlg").dialog('destroy');

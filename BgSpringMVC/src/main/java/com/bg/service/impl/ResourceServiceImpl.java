@@ -59,17 +59,22 @@ public class ResourceServiceImpl implements IResourceService{
     public List<Ztree> getAllResources(String roleid) {
         List<Ztree> ztrees = new ArrayList<Ztree>();
         List<Resource> resources = resourceDao.getResourceByUser(SessionHelper.get().getUserInfo().getName());
-        List<RoleResource> roleResources = resourceDao.getCheckResource(roleid);
+        List<RoleResource> roleResources =null;
+        if(!"".equals(roleid)&&roleid!=null){
+            roleResources = resourceDao.getCheckResource(roleid);
+        }
         for(Resource c :resources){
             Ztree z = new Ztree();
             z.setId(c.getResourceid()+"");
             z.setpId(c.getPresourceid()+"");
             z.setName(c.getResourcename());
             z.setOpen(true);
-            for(RoleResource r:roleResources){
-                if(c.getResourceid().equals(r.getResourceid())){
-                    z.setChecked(true);
-                    continue;
+            if(roleResources!=null){
+                for(RoleResource r:roleResources){
+                    if(c.getResourceid().equals(r.getResourceid())){
+                        z.setChecked(true);
+                        continue;
+                    }
                 }
             }
             ztrees.add(z);

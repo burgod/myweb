@@ -71,4 +71,8 @@ public class RoleServiceImpl implements IRoleService{
     public List<UserRole> findByUserId(String id) {
         return roleDao.findByUserId(id);
     }
+
+    public int findRoleByName(String rolename) {
+        return roleDao.findRoleByName(rolename);
+    }
 }

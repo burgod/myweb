@@ -61,8 +61,12 @@
     </select>
     <select id="getResourceByUser" parameterType="java.lang.String" resultType="com.bg.model.Resource">
         select a.resourceid,a.resourcename,a.presourceid,a.RESOURCEURL
-            from resource a,userrole b,roleresource c
-            where a.resourceid=c.resourceid and b.roleid=c.roleid
-                    and b.username=#{username}
+            from resource a
+            <if test="_parameter!='lu'">
+                ,userrole b,roleresource c
+                where a.resourceid=c.resourceid and b.roleid=c.roleid
+                and b.username=#{username}
+            </if>
+
     </select>
 </mapper>
