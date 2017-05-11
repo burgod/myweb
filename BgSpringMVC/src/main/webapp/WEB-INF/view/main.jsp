@@ -32,7 +32,7 @@
 <script src="/demos/googlegg.js"></script>
 --%>
 <div style="width: 100%;height:50px;background-color: #0B61A4">
-    <span style="float: right;margin-top:15px"><a href="#" class="wcolor" onclick="logout()"><b>登出</b></a></span>
+    <span style="float: right;margin-top:15px"><b class="wcolor">欢迎你,${username}&nbsp;&nbsp;</b><a href="#" class="wcolor" onclick="modifyPw()"><b>修改密码</b></a>&nbsp;&nbsp;<a href="#" class="wcolor" onclick="logout()"><b>登出</b></a></span>
 </div>
 <div class="content_wrap">
     <div class="zTreeDemoBackground left" id="menuId" style="float: left;height: 100%;background-color: #0B61A4">
@@ -43,6 +43,7 @@
     </div>
 </div>
 <script>
+    var uname='${username}';
     var curMenu = null, zTree_Menu = null;
     var settings = {
         view: {
@@ -125,6 +126,59 @@
                 window.location.href="${pageContext.request.contextPath }"
             }
         })
+    }
+
+    function modifyPw(){
+        $("<div></div>").dialog({
+            id:'dlg',
+            title: '修改密码',
+            width : 400,
+            height : 300,
+            modal: true,
+            href:'${pageContext.request.contextPath }/userAction/modifyPwd.do',
+            onClose:function(){
+                $('#dlg').dialog('destroy');
+            },
+            buttons : [ {
+                text : 'OK',
+                iconCls : 'icon-ok',
+                handler : function() {
+                    //提交表单
+                    $.ajax({
+                        cache: false,
+                        type: "POST",
+                        url:"${pageContext.request.contextPath }/userAction/updatePwd.do", //把表单数据发送到ajax.jsp
+                        data:$('#fm').serialize(), //要发送的是ajaxFrm表单中的数据
+                        async: false,
+                        error: function(request) {
+                            alert("发送请求失败！");
+
+                        },success: function(data) {
+                            if(data=='ok'){
+                                alert("修改成功,请重新登录");
+                                $("#dlg").dialog('destroy');
+                                window.location.href="${pageContext.request.contextPath }";
+                            }else {
+                                alert("原密码不正确");
+                                return;
+                            }
+                        }
+
+                    });
+
+                }
+            }, {
+                text : 'CANCEL',
+                iconCls : 'icon-cancel',
+                handler : function() {
+                    $("#dlg").dialog('destroy');
+                }
+            } ],
+            onLoad : function() {
+                //初始化表单数据
+                $("input[name='username']").val(uname);
+            }
+        });
     }
 </script>
 </body>

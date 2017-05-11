@@ -51,4 +51,7 @@
     <select id="findUser" parameterType="UserInfo" resultType="com.bg.model.UserInfo">
         select * from userinfo where name=#{name} and password=#{password}
     </select>
+    <update id="updatePwd" parameterType="map">
+        update userinfo set password=#{newpassword} where name=#{name}
+    </update>
 </mapper>

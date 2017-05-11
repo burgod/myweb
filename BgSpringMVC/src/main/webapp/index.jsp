@@ -20,20 +20,21 @@
 </head>
 
 <body>
-<h1>DDU</h1>
-<form action="" method="post" id="loginform">
-    <table>
-        <tr>
-            <td>用户名：</td>
-            <td><input name="name"/> </td>
-        </tr>
-        <tr>
-            <td>密码：</td>
-            <td><input type="password" name="password"/></td>
-        </tr>
-    </table>
-    <input type="button" onclick="login()" value="登录"/>
-</form>
+<div style="border: rgba(30, 51, 128, 0.99)">
+    <form action="" method="post" id="loginform">
+        <table>
+            <tr>
+                <td>用户名：</td>
+                <td><input name="name"/> </td>
+            </tr>
+            <tr>
+                <td>密码：</td>
+                <td><input type="password" name="password"/></td>
+            </tr>
+        </table>
+        <input type="button" onclick="login()" value="登录"/>
+    </form>
+</div>
 </body>
 </html>
 <script type="text/javascript">

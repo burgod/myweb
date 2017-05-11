@@ -98,4 +98,8 @@ public class UserInfoServiceImpl implements IUserInfoService{
             SessionFilter.HttpRequestContext.get().getResponse().addCookie(ckPwkey);
         }
     }
+
+    public void updatePwd(Map<String, String> map) {
+        userInfoDao.updatePwd(map);
+    }
 }

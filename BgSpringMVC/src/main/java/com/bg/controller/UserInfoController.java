@@ -7,6 +7,7 @@ import com.bg.service.IRoleService;
 import com.bg.service.IUserInfoService;
 import com.bg.utils.GsonUtils;
 import com.bg.utils.MD5;
+import com.bg.utils.SessionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +32,7 @@ public class UserInfoController{
     private IUserInfoService iUserInfoService;
 
     @RequestMapping(value="toWelcome")
-    public String handleRequest(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,UserInfo userInfo) throws Exception {
+    public String handleRequest(HttpServletRequest httpServletRequest,HttpServletResponse httpServletResponse,UserInfo userInfo,Map map) throws Exception {
         /*String name = httpServletRequest.getParameter("name");
         Integer age = Integer.valueOf(httpServletRequest.getParameter("age"));
 
@@ -40,6 +41,7 @@ public class UserInfoController{
         userInfo.setAge(age);*/
         //iUserInfoService.add(userInfo);
         //return "/welcome/welcome";
+        map.put("username", SessionHelper.get().getUserInfo().getName());
         return "view/main";
     }
 
@@ -103,6 +105,33 @@ public class UserInfoController{
     public String updateUser(UserInfo userInfo,@RequestParam(value="roleSelect")String [] roleids){
         iUserInfoService.updateUser(userInfo,roleids);
         return "success";
+    }
+
+    @RequestMapping(value="modifyPwd")
+    public String modifyPw(){
+        return "/view/modifyPwd";
+    }
+
+    @RequestMapping(value="updatePwd")
+    @ResponseBody
+    public String updatePwd(@RequestParam(value="username")String username,@RequestParam(value="password")String password,@RequestParam(value="newpassword")String newpassword){
+        UserInfo userInfo = new UserInfo();
+        if(!username.equals("lu")){
+            userInfo.setPassword(MD5.md5(password.trim(),"utf-8"));
+        }else{
+            userInfo.setPassword(password.trim());
+        }
+        userInfo.setName(username);
+        UserInfo re = iUserInfoService.findUser(userInfo);
+
+        Map<String,String> paraMap = new HashMap<String,String>();
+        paraMap.put("newpassword",MD5.md5(newpassword.trim(),"utf-8"));
+        paraMap.put("name",username);
+        if(re!=null){
+            iUserInfoService.updatePwd(paraMap);
+            return "ok";
+        }
+        return "wrong";
     }
 
 }

@@ -18,4 +18,5 @@ public interface UserInfoDao {
     UserInfo findByid(String id);
     void updateUser(UserInfo info);
     UserInfo findUser(UserInfo info);
+    void updatePwd(Map<String,String> map);
 }

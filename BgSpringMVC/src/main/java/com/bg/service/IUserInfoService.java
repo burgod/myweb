@@ -17,4 +17,5 @@ public interface IUserInfoService {
     void updateUser(UserInfo userInfo,String [] rolesId);
     UserInfo findUser(UserInfo userInfo);
     void logout();
+    void updatePwd(Map<String,String> map);
 }
