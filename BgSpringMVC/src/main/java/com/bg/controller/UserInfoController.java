@@ -49,6 +49,10 @@ public class UserInfoController{
     @ResponseBody
     public String saveUser(UserInfo userInfo,@RequestParam(value="roleSelect")String [] roleids){
         userInfo.setCreatetime(new Date());
+        UserInfo re = iUserInfoService.findUser(userInfo);
+        if(re!=null){
+            return "wrong";
+        }
         userInfo.setPassword(MD5.md5("123654","utf-8"));//新用户默认密码
         iUserInfoService.add(userInfo,roleids);
         return "success";

@@ -99,9 +99,14 @@
                             alert("发送请求失败！");
 
                         },success: function(data) {
-                            alert("添加成功");
-                            $('#mytable').datagrid("reload");
-                            $("#dlg").dialog('destroy');
+                            if(data=='success'){
+                                alert("添加成功");
+                                $('#mytable').datagrid("reload");
+                                $("#dlg").dialog('destroy');
+                            }else{
+                                alert("该用户名已经存在");
+                                return;
+                            }
                         }
 
                     });

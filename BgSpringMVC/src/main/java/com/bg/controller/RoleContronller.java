@@ -6,6 +6,7 @@ import com.bg.model.Role;
 import com.bg.model.UserRole;
 import com.bg.service.IRoleService;
 import com.bg.utils.GsonUtils;
+import com.bg.utils.SessionHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class RoleContronller {
     public String addRole(Role role){
         role.setCreatetime(new Date());
         role.setUpdatetime(new Date());
-        role.setCreateuser("lu");
+        role.setCreateuser(SessionHelper.get().getUserInfo().getName());
         String [] ztreeIds = role.getZtreeIds().split(",");
         iRoleService.addRole(role,ztreeIds);
         return "success";

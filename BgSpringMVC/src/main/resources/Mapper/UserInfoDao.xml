@@ -49,7 +49,10 @@
         WHERE id=#{id}
     </update>
     <select id="findUser" parameterType="UserInfo" resultType="com.bg.model.UserInfo">
-        select * from userinfo where name=#{name} and password=#{password}
+        select * from userinfo where name=#{name}
+        <if test="password!=null and name!=''">
+            and password=#{password}
+        </if>
     </select>
     <update id="updatePwd" parameterType="map">
         update userinfo set password=#{newpassword} where name=#{name}
