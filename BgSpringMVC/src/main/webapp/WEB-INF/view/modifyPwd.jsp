@@ -18,6 +18,10 @@
                 <td>新密码：</td>
                 <td><input name="newpassword" type="password" class="easyui-validatebox" required="true" style="width: 200px;"></td>
             </tr>
+            <tr>
+                <td>确认密码：</td>
+                <td><input name="surepassword" type="password" class="easyui-validatebox" required="true" style="width: 200px;"></td>
+            </tr>
         </table>
     </form>
 </div>

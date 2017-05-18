@@ -143,6 +143,12 @@
                 text : 'OK',
                 iconCls : 'icon-ok',
                 handler : function() {
+                    var npwd = $("input[name='newpassword']").val();
+                    var spwd = $("input[name='surepassword']").val();
+                    if(npwd!=spwd){
+                        alert("新密码不一致");
+                        return;
+                    }
                     //提交表单
                     $.ajax({
                         cache: false,
