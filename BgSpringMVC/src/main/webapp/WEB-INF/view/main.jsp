@@ -19,6 +19,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/zTreeStyle/zTreeStyle.css">
     <style>
+        body{
+            width: 100%;
+            height: 100%;
+        }
         .ztree li a.level0 {width:200px;height: 20px; text-align: center; display:block; background-color: #0B61A4; border:1px silver solid;}
         .ztree li a.level0.cur {background-color: #66A3D2; }
         .ztree li a.level0 span {display: block; color: white; padding-top:3px; font-size:12px; font-weight: bold;word-spacing: 2px;}
@@ -31,7 +35,7 @@
 <%--
 <script src="/demos/googlegg.js"></script>
 --%>
-<div style="width: 100%;height:50px;background-color: #0B61A4">
+<div style="width: 100%;height:50px;margin-top:0px;background-color: #0B61A4">
     <span style="float: right;margin-top:15px"><b class="wcolor">欢迎你,${username}&nbsp;&nbsp;</b><a href="#" class="wcolor" onclick="modifyPw()"><b>修改密码</b></a>&nbsp;&nbsp;<a href="#" class="wcolor" onclick="logout()"><b>登出</b></a></span>
 </div>
 <div class="content_wrap">
@@ -115,6 +119,7 @@
                 zTree_Menu.selectNode(curMenu);
                 var a = $("#" + zTree_Menu.getNodes()[0].tId + "_a");
                 a.addClass("cur");
+                $(".content").load("${pageContext.request.contextPath }"+curMenu.resourceurl);
             }
         })
     });
